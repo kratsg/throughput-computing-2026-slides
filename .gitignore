@@ -1,0 +1,18 @@
+# Dependencies (root and nested, incl. .agents skills)
+node_modules/
+
+# Build artifacts
+screenshots/
+output.pdf
+*.pdf
+
+# Reference material (kept locally, not part of the slides repo)
+af-agentic-ai-research.md
+af-docs/
+ami-mcp/
+rucio-mcp/
+marketplace/
+jupyter-mcp-server/
+
+# OS / editor
+.DS_Store
