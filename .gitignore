@@ -13,6 +13,7 @@ ami-mcp/
 rucio-mcp/
 marketplace/
 jupyter-mcp-server/
+flux_apps/
 
 # OS / editor
 .DS_Store
