@@ -44,12 +44,12 @@
             <div class="card">
               <p class="card-icon"><i class="fa-solid fa-robot"></i></p>
               <h3>A generic LLM</h3>
-              <p>&ldquo;Write the outputs next to your job&rdquo; &mdash; i.e. <code>$HOME</code>. Blows the 100&nbsp;GB <code>/home</code> quota and clogs the backup with throwaway ntuples.</p>
+              <p>&ldquo;Write the outputs next to your job&rdquo; &mdash; i.e. <code>$HOME</code>. The big ntuples blow the 100&nbsp;GB <code>/home</code> quota almost immediately.</p>
             </div>
             <div class="card teal">
               <p class="card-icon"><i class="fa-solid fa-microchip"></i></p>
               <h3>An LLM that knows the AF</h3>
-              <p>ntuples &rarr; <code>/data</code> (5&nbsp;TB, not backed up); histograms &rarr; <code>/home</code> (100&nbsp;GB, backed up). It knows our storage layout.</p>
+              <p>big ntuples &rarr; <code>/data</code> (5&nbsp;TB); small histograms &rarr; <code>/home</code> (100&nbsp;GB). It knows the quotas and layout.</p>
             </div>
           </div>
           <div class="callout" style="margin-top: 20px;">
@@ -58,8 +58,8 @@
           </div>
         </div>
         <aside class="notes">
-          This one example is the entire talk, and it's AF-specific on purpose. An analyzer runs TopCPToolkit: large output ntuples, small histograms. Ask a generic model where to write them and it'll say "next to your job" — your home directory — which has a 100 GB backed-up quota. That fills your quota and wastes backup on files you'll regenerate.
-          An AF-aware agent routes the big ntuples to /data (5 TB, not backed up) and keeps the small histograms in /home. Same model — it just knows our storage layout.
+          This one example is the entire talk, and it's AF-specific on purpose. An analyzer runs TopCPToolkit: large output ntuples, small histograms. Ask a generic model where to write them and it'll say "next to your job" — your home directory — which is only 100 GB. The big ntuples blow that quota almost immediately.
+          An AF-aware agent routes the big ntuples to /data (5 TB) and keeps the small histograms in /home. Same model — it just knows the quotas and layout.
           Everything else today is variations on "wrap facility knowledge and tools behind the agent."
         </aside>
       </section>
@@ -73,7 +73,7 @@
               <div class="card">
                 <p class="card-icon"><i class="fa-solid fa-brain"></i></p>
                 <h3>Agent</h3>
-                <p>An LLM in a loop that can <strong>call tools</strong>, see results, and decide the next step &mdash; not just emit text.</p>
+                <p>The <strong>decision-maker</strong>: a model that picks the next tool to call, reads the result, and repeats. The &ldquo;brain.&rdquo;</p>
               </div>
               <div class="card teal">
                 <p class="card-icon"><i class="fa-solid fa-plug"></i></p>
@@ -88,7 +88,7 @@
               <div class="card teal">
                 <p class="card-icon"><i class="fa-solid fa-terminal"></i></p>
                 <h3>Agent harness</h3>
-                <p>The program that runs the agent loop &mdash; e.g. <strong>Claude Code</strong>, Codex, Copilot. We&rsquo;re Claude-Code-centric today.</p>
+                <p>The app that gives the agent <strong>hands</strong>: runs its commands, reads/writes files, wires MCPs, enforces permissions. e.g. <strong>Claude Code</strong>, Codex.</p>
               </div>
             </div>
             <div style="display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 18px;">
@@ -100,7 +100,7 @@
             </div>
           </div>
           <aside class="notes">
-            Fast, because this room is mixed. Agent = LLM that calls tools in a loop. MCP = the USB-C port for tools and resources; write one adapter, every agent can use it. Skill = instructions on demand. Harness = the program running the loop — we're Claude-Code-centric but this is harness-agnostic.
+            Fast, because this room is mixed. Agent = the brain: the model deciding which tool to call next. Harness = the hands: the app that actually runs those commands, touches files, wires up MCPs, enforces permissions — Claude Code, Codex. MCP = the USB-C port exposing a service as tools and resources. Skill = instructions on demand.
             Don't dwell — these are just the nouns for the rest of the talk.
           </aside>
         </section>
@@ -268,7 +268,7 @@ rucio list-file-replicas &lt;scope&gt;:&lt;name&gt; --protocol root</code></pre>
         <p class="kicker">What you can use today &middot; data &amp; metadata MCPs</p>
         <h2>Find datasets &amp; metadata by asking</h2>
         <div class="content">
-          <p><code>rucio-mcp</code> = dataset access (find, inspect, replicas, download) &middot; <code>ami-mcp</code> = metadata &amp; cross-sections. <span class="text-muted">Also: <code>atlasopenmagic</code>, glance via <code>stare</code>.</span></p>
+          <p><a href="https://github.com/kratsg/rucio-mcp"><code>rucio-mcp</code></a> = dataset access (find, inspect, replicas, download) &middot; <a href="https://github.com/kratsg/ami-mcp"><code>ami-mcp</code></a> = metadata &amp; cross-sections. <span class="text-muted">Also: <a href="https://github.com/atlas-outreach-data-tools/atlasopenmagic-mcp"><code>atlasopenmagic</code></a>, glance via <a href="https://github.com/kratsg/stare"><code>stare</code></a>.</span></p>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top:4px;">
             <div>
               <p class="text-maroon" style="font-weight:600; font-size:14pt; margin:0;"><i class="fa-solid fa-laptop-code"></i>&nbsp; Run it locally (your x509)</p>
@@ -286,7 +286,7 @@ rucio-mcp.af.uchicago.edu
             </div>
           </div>
         </div>
-        <div class="footnote">Auth reuses grid creds (x509) or Keycloak OIDC &middot; OAuth bridge: <code>github.com/kratsg/rucio-mcp/&hellip;/rucio-oauth-bridge.md</code> &middot; <em>running</em> workflows is <a href="https://panda-wms.readthedocs.io/en/latest/advanced/mcp.html">panda-mcp</a>&rsquo;s job (not yet at AF).</div>
+        <div class="footnote">Auth reuses grid creds (x509) or Keycloak OIDC &middot; <a href="https://github.com/kratsg/rucio-mcp/blob/main/docs/rucio-oauth-bridge.md">OAuth bridge docs</a> &middot; <em>running</em> workflows is <a href="https://panda-wms.readthedocs.io/en/latest/advanced/mcp.html">panda-mcp</a>&rsquo;s job (not yet at AF).</div>
         <aside class="notes">
           Two clarifications on my earlier framing. First, the scope: rucio is dataset ACCESS — find, inspect, replicas, download. "Talk to the grid / run my workflow" is actually panda-mcp's job, Brian Bockelman's space — we don't have it at the AF yet but will document it once confirmed.
           Second, two ways to run these. Locally with your x509 proxy — pixi exec, one line, read-only by default because rucio-mcp has 50+ tools and you don't want an agent deleting replication rules. OR the hosted server at rucio-mcp.af.uchicago.edu, one HTTP endpoint serving four experiments, with a browser OIDC login. OIDC support is uneven across experiments — depends on RSE/FTS config — so I wrote an OAuth bridge to manage that flow. I can demo that auth handshake step-by-step plus a live query.
@@ -405,9 +405,9 @@ rucio-mcp.af.uchicago.edu
         <h2>Swap the model freely &mdash; <span class="accent">context</span> makes it useful here</h2>
         <div class="content">
           <div style="display:grid; grid-template-columns: 1fr 1fr 1.15fr; gap:18px; align-items:stretch;">
-            <div class="node slate" style="font-size:15pt; padding:14px;">Model<span class="sub">Opus &middot; GPT-5 &middot; <strong>local open weights</strong> &rarr; cost control</span></div>
+            <div class="node slate" style="font-size:15pt; padding:14px;">Model<span class="sub">Opus &middot; GPT-5 &middot; <strong>local / NRP-hosted open weights</strong> &rarr; cost control</span></div>
             <div class="node slate" style="font-size:15pt; padding:14px;">Harness<span class="sub">Claude Code &middot; Codex &middot; Copilot</span></div>
-            <div class="node fill" style="font-size:15pt; padding:14px;">Facility context &amp; ATLAS tools<span class="sub">storage, scheduler, Rucio, pyhf &mdash; the AF</span></div>
+            <div class="node fill" style="font-size:15pt; padding:14px;">Facility context &amp; ATLAS tools<span class="sub">storage, scheduler, Rucio, FastFrames, coffea, pyhf &mdash; the AF</span></div>
           </div>
           <p class="text-center text-maroon" style="font-size:22pt; margin:10px;"><i class="fa-solid fa-arrows-down-to-line"></i></p>
           <div class="node teal" style="font-size:17pt; padding:14px;">An assistant that&rsquo;s actually useful <em>here</em><span class="sub">routes ntuples to <code>/data</code>, not <code>/home</code></span></div>
@@ -415,10 +415,40 @@ rucio-mcp.af.uchicago.edu
             <p style="font-size:16pt;">The first two blocks are <strong>interchangeable</strong> &mdash; pick any model (or self-host to cut cost), any harness. Every win today came from the <strong>third</strong>: the managed <code>CLAUDE.md</code>, the marketplace plugins, the Rucio/AMI MCPs, the condor bot&rsquo;s <code>HTCondor.md</code>.</p>
           </div>
         </div>
+        <div class="footnote">Self-hosting option for open-weight models: <a href="https://nrp.ai/llms/">NRP-hosted LLMs</a> (nrp.ai/llms).</div>
         <aside class="notes">
           If you take one slide home, this one — and I'm dropping the buzzwords to be concrete. Three ingredients. The model — Opus, GPT-5, or a locally-hosted open-weight model, which matters for cost at HL-LHC scale. The harness — Claude Code, Codex, Copilot. Both of those you can swap freely; they're not where our work is.
           The third block is the facility context and ATLAS tools, and THAT is where every win in section one came from: the CLAUDE.md, the marketplace, the MCPs, the agent's memory file.
           So: models keep improving on their own, harnesses are a preference, and you can self-host to control cost. Our job — the facility's job — is the context. That's why this is a facility conversation, not just a vendor one.
+        </aside>
+      </section>
+
+      <section id="slide-13b">
+        <p class="kicker">The core insight &middot; the flip side</p>
+        <h2>No context? It should <span class="accent">stay quiet.</span></h2>
+        <div class="content">
+          <div class="callout" style="margin-top:2px;">
+            <p class="label"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp; What actually happened</p>
+            <p>Our cluster agents confidently recommended <strong>Lustre/MDS tuning</strong> for a filesystem that is actually <strong>Ceph</strong> &mdash; they had zero Ceph context. Plausible, fluent, and wrong.</p>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:14px;">
+            <blockquote style="font-size:16pt; margin:0;">
+              &ldquo;If we&rsquo;re supposed to rely on the agents, they need to be accurate &mdash; otherwise they can&rsquo;t be trusted.&rdquo;
+              <cite>Judith, <code>#analysis-facility</code></cite>
+            </blockquote>
+            <blockquote style="font-size:16pt; margin:0;">
+              &ldquo;If the agent has no Ceph context, it shouldn&rsquo;t make recommendations or ping people &mdash; we&rsquo;d just chase irrelevant suggestions.&rdquo;
+              <cite>Farnaz, same thread</cite>
+            </blockquote>
+          </div>
+          <div class="callout teal" style="margin-top:16px;">
+            <p>The rule we landed on: <strong>if it isn&rsquo;t grounded in real facility context, it stays silent</strong> rather than speculates. Context isn&rsquo;t just what makes the agent <em>useful</em> &mdash; it&rsquo;s what makes it <em>safe to trust.</em></p>
+          </div>
+        </div>
+        <aside class="notes">
+          The flip side of the thesis, and it's a real scrape. Early on, our cluster-monitoring agents recommended Lustre and MDS tuning for a problem on a filesystem that's actually Ceph. They had no Ceph context, so they pattern-matched to the storage they DID know — confident, fluent, and wrong.
+          The team's reaction matters. Judith: if we're going to rely on these, they have to be accurate or they can't be trusted. Farnaz: if it has no Ceph context, it shouldn't be making recommendations or pinging people — we'll just chase irrelevant noise. Ilija's point: those agents had literally zero Ceph instructions.
+          So the rule we adopted: no grounded context, stay quiet. This is the same thesis from the other side — context isn't only what makes the agent useful, it's what makes it safe to trust. And it's exactly why "where does the knowledge live and who keeps it true" is a real question, not bookkeeping.
         </aside>
       </section>
 
@@ -438,8 +468,8 @@ rucio-mcp.af.uchicago.edu
           <div style="display:grid; grid-template-columns: repeat(4,1fr); gap:14px; margin-top:6px;">
             <div class="card teal"><p style="font-size:13pt;">rucio-mcp &middot; ami-mcp &middot; Open Data</p></div>
             <div class="card teal"><p style="font-size:13pt;">coffea &middot; uproot &middot; FastFrames &middot; ServiceX &middot; Athena</p></div>
-            <div class="card teal"><p style="font-size:13pt;">HTCondor &middot; Dask &middot; PanDA &middot; REANA</p></div>
-            <div class="card teal"><p style="font-size:13pt;">pyhf &middot; cabinetry &middot; TRExFitter</p></div>
+            <div class="card teal"><p style="font-size:13pt;">HTCondor &middot; Dask &middot; Slurm &middot; PanDA &middot; REANA &middot; lxbatch &middot; graphed-org</p></div>
+            <div class="card teal"><p style="font-size:13pt;">pyhf &middot; cabinetry &middot; TRExFitter &middot; optimistix &middot; SBI</p></div>
           </div>
           <div class="callout" style="margin-top:18px;">
             <p>The agent never names &ldquo;coffea&rdquo; or &ldquo;condor.&rdquo; It asks for an <em>outcome</em>; the facility decides the backend. <strong>That indirection is what makes the same agent portable across facilities.</strong></p>
@@ -472,11 +502,18 @@ rucio-mcp.af.uchicago.edu
             <p class="label"><i class="fa-solid fa-people-group"></i>&nbsp; Quick orientation &mdash; think of it as a sports team</p>
             <p style="font-size:14pt;"><strong>Reasoning engine</strong> = coach &middot; <strong>Playbook</strong> = game plan &middot; <strong>Agents</strong> = athletes &middot; <strong>Services</strong> = equipment &middot; <strong>Gateway</strong> = stadium entrance</p>
           </div>
-          <p class="text-muted" style="font-size:13pt; margin-top:10px;"><i class="fa-solid fa-book"></i>&nbsp; We keep a shared <strong>glossary</strong> (we call the whole thing <strong>Elwood</strong>) so the team&rsquo;s language stays consistent &mdash; and so we know how to talk to our own agents while building the tooling.</p>
+          <div style="display:grid; grid-template-columns: 1.4fr 1fr; gap:18px; margin-top:12px; align-items:center;">
+            <p class="text-muted" style="font-size:13pt; margin:0;"><i class="fa-solid fa-book"></i>&nbsp; We keep a shared <strong>glossary</strong> so the team&rsquo;s language stays consistent &mdash; and so we know how to talk to our own agents while building the tooling. <span class="text-maroon">(&ldquo;Elwood&rdquo; is our internal project name &mdash; nothing public yet.)</span></p>
+            <div class="shot" style="min-height:120px;">
+              <i class="fa-solid fa-palette"></i>
+              <p class="shot-label">IMAGE: the sports-team analogy</p>
+              <p class="shot-hint">coach &middot; playbook &middot; athletes &middot; equipment &middot; stadium</p>
+            </div>
+          </div>
         </div>
         <aside class="notes">
           Third idea, and let me fix my own vocabulary — we've moved past "codec/codebook" to clearer terms. The reasoning engine is the framework: orchestration, routing, guardrails — written once, agnostic to model and experiment. The playbook is all the context: which tools, the system prompt, the knowledge, the examples.
-          Quick orientation, because the ontology has more pieces: think of our system — we call it Elwood — like a sports team. The reasoning engine is the coach, the playbook is the game plan, agents are the athletes, services are equipment kits, the gateway is the stadium entrance. We keep a written glossary so the whole team uses the same words — which matters a lot when you're instructing agents to help build the infrastructure.
+          Quick orientation, because the ontology has more pieces: think of our system — internally we call it Elwood, nothing public yet — like a sports team. The reasoning engine is the coach, the playbook is the game plan, agents are the athletes, services are equipment kits, the gateway is the stadium entrance. We keep a written glossary so the whole team uses the same words — which matters a lot when you're instructing agents to help build the infrastructure.
           Next slide: what swapping the playbook actually looks like.
         </aside>
       </section>
@@ -503,13 +540,15 @@ rucio-mcp.af.uchicago.edu
             </div>
           </div>
           <div class="callout teal" style="margin-top:16px;">
-            <p>You&rsquo;ve already met the ATLAS playbook in pieces: the managed <code>CLAUDE.md</code>, the marketplace plugins, the agent&rsquo;s <code>HTCondor.md</code>. <strong>The playbook is just facility context, turned into a versioned artifact.</strong></p>
+            <p>The per-tool <strong>skills are facility-independent</strong> &mdash; written once, reused everywhere &mdash; so each experiment/facility only writes its thin playbook, not a whole stack. <strong>The goal: stop re-developing the same agentic tooling in parallel.</strong></p>
           </div>
+          <p class="text-muted" style="font-size:12.5pt; margin-top:8px;">You&rsquo;ve already met the ATLAS playbook in pieces: the managed <code>CLAUDE.md</code>, the marketplace plugins, the agent&rsquo;s <code>HTCondor.md</code>.</p>
         </div>
         <aside class="notes">
           Concretely, here's a playbook swap. On the left, ATLAS at UChicago: data_tool delegates to rucio-mcp because we're on the grid; transforms via coffea or FastFrames; batch via HTCondor; inference via pyhf or TRExFitter.
           On the right, a different facility — say a US Higgs-factory effort — whose data_tool today is just "download or browse files off EOS or the web," batch is local or Slurm. Same reasoning engine, same high-level tool names. Only the playbook differs, and the biggest difference is how data_tool is wired.
-          And the punchline tying the whole talk together: you've already met the ATLAS playbook in pieces — the CLAUDE.md, the marketplace plugins, the agent's memory file. The playbook is just facility context turned into a versioned artifact.
+          The key reuse point: the skills for each tool are facility-INDEPENDENT — written once, shared — so a new facility only writes a thin playbook, not the whole stack. That's the whole goal: stop every experiment and facility re-developing the same agentic tooling in parallel.
+          And you've already met the ATLAS playbook in pieces — the CLAUDE.md, the marketplace plugins, the agent's memory file. It's just facility context as a versioned artifact.
         </aside>
       </section>
 

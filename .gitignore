@@ -5,6 +5,10 @@ node_modules/
 screenshots/
 output.pdf
 *.pdf
+_site/
+
+# Personal working checklist
+TODO.md
 
 # Reference material (kept locally, not part of the slides repo)
 af-agentic-ai-research.md
