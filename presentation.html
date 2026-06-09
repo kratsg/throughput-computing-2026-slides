@@ -47,22 +47,22 @@
         <p class="kicker">The whole talk in one example</p>
         <h2>&ldquo;Where do my TopCPToolkit outputs go?&rdquo;</h2>
         <div class="content">
-          <p class="text-lg">Your jobs emit big <strong>ntuples</strong> and small <strong>histograms</strong>. Where should each land on the AF?</p>
+          <p class="text-lg">Your batch jobs emit big <strong>ntuples</strong> and small <strong>histograms</strong>. Where should each land on the AF?</p>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: stretch; margin-top:6px;">
             <div class="card">
               <p class="card-icon"><i class="fa-solid fa-robot"></i></p>
               <h3>A generic LLM</h3>
-              <p>&ldquo;Write the outputs next to your job&rdquo;, i.e. <code>$HOME</code>. The big ntuples blow the 100&nbsp;GB <code>/home</code> quota almost immediately.</p>
+              <p>&ldquo;Transfer the outputs back to submit node&rdquo;, i.e. <code>$HOME</code>. The big ntuples blow the 100&nbsp;GB <code>/home</code> quota almost immediately.</p>
             </div>
             <div class="card teal">
               <p class="card-icon"><i class="fa-solid fa-microchip"></i></p>
               <h3>An LLM that knows the AF</h3>
-              <p>big ntuples &rarr; <code>/data</code> (5&nbsp;TB); small histograms &rarr; <code>/home</code> (100&nbsp;GB). It knows the quotas and layout.</p>
+              <p>big ntuples &rarr; <code>/data</code> (5&nbsp;TB); small histograms &rarr; <code>/home</code> (100&nbsp;GB). It knows the quotas and layout and mounts.</p>
             </div>
           </div>
           <div class="callout" style="margin-top: 20px;">
             <p class="label">The thesis</p>
-            <p>The model didn&rsquo;t get smarter. We gave it <strong>facility context</strong>. That gap, between a generic assistant and one that knows <em>your</em> storage, scheduler, and data, is the whole game.</p>
+            <p>The model didn&rsquo;t get smarter. We gave it <strong>facility context</strong>. That gap, between a generic assistant and one that knows <em>your</em> storage, scheduler, and data, is the key.</p>
           </div>
         </div>
         <aside class="notes">
@@ -79,9 +79,9 @@
           <div class="content">
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
               <div class="card">
-                <p class="card-icon"><i class="fa-solid fa-brain"></i></p>
+                <p class="card-icon"><i class="fa-solid fa-arrows-spin"></i></p>
                 <h3>Agent</h3>
-                <p>The <strong>decision-maker</strong>: a model that picks the next tool to call, reads the result, and repeats. The &ldquo;brain.&rdquo;</p>
+                <p>The <strong>engine</strong> doing the work: a loop that uses an LLM (the &ldquo;brain&rdquo;) to decide each step, call a tool, read the result, and repeat.</p>
               </div>
               <div class="card teal">
                 <p class="card-icon"><i class="fa-solid fa-plug"></i></p>
@@ -108,7 +108,7 @@
             </div>
           </div>
           <aside class="notes">
-            Fast, because this room is mixed. Agent = the brain: the model deciding which tool to call next. Harness = the hands: the app that actually runs those commands, touches files, wires up MCPs, enforces permissions, Claude Code, Codex. MCP = the USB-C port exposing a service as tools and resources. Skill = instructions on demand.
+            Fast, because this room is mixed. Agent = the engine doing the work: a loop that uses the model (the LLM, the brain) to decide each step. Harness = the hands: the app that actually runs those commands, touches files, wires up MCPs, enforces permissions, Claude Code, Codex. MCP = the USB-C port exposing a service as tools and resources. Skill = instructions on demand.
             Don't dwell, these are just the nouns for the rest of the talk.
           </aside>
         </section>
