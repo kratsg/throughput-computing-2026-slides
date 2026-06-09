@@ -284,7 +284,9 @@ rucio list-file-replicas &lt;scope&gt;:&lt;name&gt; --protocol root</code></pre>
         <p class="kicker">What you can use today &middot; data &amp; metadata MCPs</p>
         <h2>Find datasets &amp; metadata by asking</h2>
         <div class="content">
-          <p><a href="https://github.com/kratsg/rucio-mcp"><code>rucio-mcp</code></a> = dataset access (find, inspect, replicas, download) &middot; <a href="https://github.com/kratsg/ami-mcp"><code>ami-mcp</code></a> = metadata &amp; cross-sections. <span class="text-muted">Also: <a href="https://github.com/atlas-outreach-data-tools/atlasopenmagic-mcp"><code>atlasopenmagic</code></a>, glance via <a href="https://github.com/kratsg/stare"><code>stare</code></a>.</span></p>
+          <p style="margin:0;"><a href="https://github.com/kratsg/rucio-mcp"><code>rucio-mcp</code></a> &mdash; dataset access: find, inspect, replicas, download</p>
+          <p style="margin:3px 0 0;"><a href="https://github.com/kratsg/ami-mcp"><code>ami-mcp</code></a> &mdash; metadata &amp; cross-sections</p>
+          <p style="margin:3px 0 0;" class="text-muted">also <a href="https://github.com/atlas-outreach-data-tools/atlasopenmagic-mcp"><code>atlasopenmagic</code></a>, glance via <a href="https://github.com/kratsg/stare"><code>stare</code></a></p>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top:4px;">
             <div>
               <p class="text-maroon" style="font-weight:600; font-size:14pt; margin:0;"><i class="fa-solid fa-laptop-code"></i>&nbsp; Run it locally (your x509)</p>
@@ -591,11 +593,13 @@ rucio-mcp.af.uchicago.edu
           </div>
           <p class="text-muted" style="font-size:12.5pt; margin-top:8px;">You&rsquo;ve already met the ATLAS playbook in pieces: the managed <code>CLAUDE.md</code>, the marketplace plugins, the agent&rsquo;s <code>HTCondor.md</code>.</p>
         </div>
+        <div class="footnote"><i class="fa-solid fa-circle-question"></i>&nbsp; Still open: how to <em>link</em> &amp; reuse others&rsquo; skills without copying them in &mdash; <a href="https://github.com/usatlas/marketplace/issues/60">usatlas/marketplace#60</a> (options exist; no best practice yet).</div>
         <aside class="notes">
           Concretely, here's a playbook swap. On the left, ATLAS at UChicago: data_tool delegates to rucio-mcp because we're on the grid; transforms via coffea or FastFrames; batch via HTCondor; inference via pyhf or TRExFitter.
           On the right, a different facility — say a US Higgs-factory effort — whose data_tool today is just "download or browse files off EOS or the web," batch is local or Slurm. Same reasoning engine, same high-level tool names. Only the playbook differs, and the biggest difference is how data_tool is wired.
           The key reuse point: the skills for each tool are facility-INDEPENDENT — written once, shared — so a new facility only writes a thin playbook, not the whole stack. That's the whole goal: stop every experiment and facility re-developing the same agentic tooling in parallel.
           And you've already met the ATLAS playbook in pieces — the CLAUDE.md, the marketplace plugins, the agent's memory file. It's just facility context as a versioned artifact.
+          One honest caveat on "reuse": HOW you reuse someone else's skill without just copying it into your repo is genuinely unsolved — there's an open issue on the marketplace, #60, with a few options and no agreed best practice yet. That's part of the same modularity conversation.
         </aside>
       </section>
 
