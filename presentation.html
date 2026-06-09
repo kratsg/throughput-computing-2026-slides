@@ -27,7 +27,7 @@
           <div>
             <p class="kicker">USATLAS Face-to-Face &middot; Throughput Computing Week 2026</p>
             <h1>LLM-Assisted Analysis<br>at the UChicago AF</h1>
-            <p class="subtitle">Agentic tools your analysis can use&nbsp;&mdash;&nbsp;today</p>
+            <p class="subtitle">Agentic tools your analysis can use&nbsp;today</p>
             <p class="byline">Giordon Stark (UC&nbsp;Santa&nbsp;Cruz / SCIPP) &middot; on behalf of the UChicago AF team &middot; 2026&#8209;06&#8209;09</p>
           </div>
           <div style="text-align:center;">
@@ -52,7 +52,7 @@
             <div class="card">
               <p class="card-icon"><i class="fa-solid fa-robot"></i></p>
               <h3>A generic LLM</h3>
-              <p>&ldquo;Write the outputs next to your job&rdquo; &mdash; i.e. <code>$HOME</code>. The big ntuples blow the 100&nbsp;GB <code>/home</code> quota almost immediately.</p>
+              <p>&ldquo;Write the outputs next to your job&rdquo;, i.e. <code>$HOME</code>. The big ntuples blow the 100&nbsp;GB <code>/home</code> quota almost immediately.</p>
             </div>
             <div class="card teal">
               <p class="card-icon"><i class="fa-solid fa-microchip"></i></p>
@@ -62,7 +62,7 @@
           </div>
           <div class="callout" style="margin-top: 20px;">
             <p class="label">The thesis</p>
-            <p>The model didn&rsquo;t get smarter. We gave it <strong>facility context</strong>. That gap &mdash; between a generic assistant and one that knows <em>your</em> storage, scheduler, and data &mdash; is the whole game.</p>
+            <p>The model didn&rsquo;t get smarter. We gave it <strong>facility context</strong>. That gap, between a generic assistant and one that knows <em>your</em> storage, scheduler, and data, is the whole game.</p>
           </div>
         </div>
         <aside class="notes">
@@ -74,7 +74,7 @@
 
       <section>
         <section id="slide-3-1">
-          <p class="kicker">Grounding &mdash; the vocabulary</p>
+          <p class="kicker">Grounding &middot; the vocabulary</p>
           <h2>Four words, one minute</h2>
           <div class="content">
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
@@ -124,7 +124,7 @@
                 </blockquote>
                 <ul>
                   <li><strong>His framing:</strong> data &amp; tools &rarr; MCP &rarr; skills &rarr; agents; grounded in primary sources; &ldquo;we need a <strong>pip-install</strong>.&rdquo;</li>
-                  <li><strong>This talk:</strong> one facility&rsquo;s instance, running now &mdash; and the claim that <strong>facility context</strong> is the decisive layer, built to port.</li>
+                  <li><strong>This talk:</strong> one facility&rsquo;s instance, running now, and the claim that <strong>facility context</strong> is the decisive layer, built to port.</li>
                 </ul>
               </div>
               <div>
@@ -159,7 +159,7 @@
           <div style="display: grid; grid-template-columns: 1.05fr 1fr; gap: 26px;">
             <div>
               <ul>
-                <li>You install your own harness on the login nodes &mdash; we don&rsquo;t force one</li>
+                <li>You install your own harness on the login nodes; we don&rsquo;t force one</li>
                 <li>Our config management (Puppet) ships system-wide <strong>managed settings</strong>: a curated <strong>allow-list</strong> of safe HEP commands + the <strong>ATLAS env</strong></li>
                 <li>Any harness that reads them inherits the facility&rsquo;s guardrails</li>
               </ul>
@@ -169,7 +169,7 @@
               </div>
               <div class="callout" style="margin-top:10px;">
                 <p class="label"><i class="fa-solid fa-circle-question"></i>&nbsp; Open question</p>
-                <p style="font-size:14pt;">Ship this <em>with the facility</em> (Puppet) or via the <em>marketplace</em>? &mdash; we&rsquo;ll come back to it.</p>
+                <p style="font-size:14pt;">Ship this <em>with the facility</em> (Puppet) or via the <em>marketplace</em>? We&rsquo;ll come back to it.</p>
               </div>
             </div>
             <div>
@@ -208,7 +208,7 @@
                 <tr><th>Path</th><th>Quota</th><th>Use for</th></tr>
                 <tr><td><code>/home/$USER</code></td><td>100&nbsp;GB, backed up</td><td>Code, scripts, condor files</td></tr>
                 <tr><td><code>/data/$USER</code></td><td>5&nbsp;TB, not backed up</td><td>ROOT files, datasets</td></tr>
-                <tr><td><code>/scratch</code></td><td>node-local</td><td>Ephemeral &mdash; copy out before exit</td></tr>
+                <tr><td><code>/scratch</code></td><td>node-local</td><td>Ephemeral, copy out before exit</td></tr>
               </table>
               <pre><code class="block"><span class="cmt"># live monitor (DO NOT use: watch condor_q)</span>
 condor_watch_q
@@ -220,7 +220,7 @@ rucio list-file-replicas &lt;scope&gt;:&lt;name&gt; --protocol root</code></pre>
             <div>
               <div class="callout">
                 <p class="label">This is the whole thesis</p>
-                <p>A generic model can&rsquo;t know that <code>/home</code> is backed up but tiny, that <code>/scratch</code> vanishes, or that XCache exists. <strong>We write it down once</strong> &mdash; the agent inherits it.</p>
+                <p>A generic model can&rsquo;t know that <code>/home</code> is backed up but tiny, that <code>/scratch</code> vanishes, or that XCache exists. <strong>We write it down once</strong>, and the agent inherits it.</p>
               </div>
               <ul style="margin-top:14px;">
                 <li>Storage layout, quotas, backup policy</li>
@@ -241,15 +241,15 @@ rucio list-file-replicas &lt;scope&gt;:&lt;name&gt; --protocol root</code></pre>
 
       <section id="slide-7">
         <p class="kicker">What you can use today &middot; distribution</p>
-        <h2>The USATLAS marketplace &mdash; installing the <span class="accent">know-how</span></h2>
+        <h2>The USATLAS marketplace: installing the <span class="accent">know-how</span></h2>
         <div class="content">
           <pre><code class="block"><span class="cmd-prompt">&gt;</span> /plugins marketplace add usatlas/marketplace</code></pre>
-          <p style="font-size:14pt; margin:6px 0 0;"><strong>Three plugins</strong> &mdash; each bundles skills, subagents &amp; hooks &mdash; at <a href="https://github.com/usatlas/marketplace">github.com/usatlas/marketplace</a>:</p>
+          <p style="font-size:14pt; margin:6px 0 0;"><strong>Three plugins</strong> (each bundles skills, subagents &amp; hooks) at <a href="https://github.com/usatlas/marketplace">github.com/usatlas/marketplace</a>:</p>
           <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 8px;">
             <div class="card">
               <p class="card-icon"><i class="fa-solid fa-server"></i></p>
               <h3>analysis-facilities</h3>
-              <p>Facility skills: HTCondor, JupyterLab, XCache, Rucio, ServiceX, Coffea-Casa, Triton &mdash; for UChicago, BNL, SLAC.</p>
+              <p>Facility skills: HTCondor, JupyterLab, XCache, Rucio, ServiceX, Coffea-Casa, Triton (for UChicago, BNL, SLAC).</p>
             </div>
             <div class="card teal">
               <p class="card-icon"><i class="fa-solid fa-atom"></i></p>
@@ -264,12 +264,12 @@ rucio list-file-replicas &lt;scope&gt;:&lt;name&gt; --protocol root</code></pre>
           </div>
           <div style="display:grid; grid-template-columns: 1.2fr 1fr; gap:18px; margin-top:14px;">
             <div class="callout teal">
-              <p class="label"><i class="fa-solid fa-box-open"></i>&nbsp; Plugins install in one line &mdash; the tools don&rsquo;t</p>
-              <p style="font-size:13pt;">The agent know-how adds instantly; the <em>tools</em> come via <strong>setupATLAS + pixi</strong>. No <code>/cvmfs</code>? <strong>pixi + conda-forge</strong> covers most &mdash; see <a href="https://github.com/hep-packaging-coordination/">HEP Packaging Coordination</a> &amp; <a href="https://matthewfeickert-talks.github.io/talk-chep-2026/">Feickert (CHEP&nbsp;2026)</a>.</p>
+              <p class="label"><i class="fa-solid fa-box-open"></i>&nbsp; Plugins install in one line; the tools don&rsquo;t</p>
+              <p style="font-size:13pt;">The agent know-how adds instantly; the <em>tools</em> come via <strong>setupATLAS + pixi</strong>. No <code>/cvmfs</code>? <strong>pixi + conda-forge</strong> covers most; see <a href="https://github.com/hep-packaging-coordination/">HEP Packaging Coordination</a> &amp; <a href="https://matthewfeickert-talks.github.io/talk-chep-2026/">Feickert (CHEP&nbsp;2026)</a>.</p>
             </div>
             <div class="callout">
               <p class="label"><i class="fa-solid fa-circle-question"></i>&nbsp; Open question</p>
-              <p style="font-size:13pt;">Where should AF knowledge live &mdash; shared <strong>marketplace</strong> or <strong>with the facility</strong> (Puppet)? Today: <em>both</em>.</p>
+              <p style="font-size:13pt;">Where should AF knowledge live: shared <strong>marketplace</strong> or <strong>with the facility</strong> (Puppet)? Today: <em>both</em>.</p>
             </div>
           </div>
         </div>
@@ -284,8 +284,8 @@ rucio list-file-replicas &lt;scope&gt;:&lt;name&gt; --protocol root</code></pre>
         <p class="kicker">What you can use today &middot; data &amp; metadata MCPs</p>
         <h2>Find datasets &amp; metadata by asking</h2>
         <div class="content">
-          <p style="margin:0;"><a href="https://github.com/kratsg/rucio-mcp"><code>rucio-mcp</code></a> &mdash; dataset access: find, inspect, replicas, download</p>
-          <p style="margin:3px 0 0;"><a href="https://github.com/kratsg/ami-mcp"><code>ami-mcp</code></a> &mdash; metadata &amp; cross-sections</p>
+          <p style="margin:0;"><a href="https://github.com/kratsg/rucio-mcp"><code>rucio-mcp</code></a>: dataset access (find, inspect, replicas, download)</p>
+          <p style="margin:3px 0 0;"><a href="https://github.com/kratsg/ami-mcp"><code>ami-mcp</code></a>: metadata &amp; cross-sections</p>
           <p style="margin:3px 0 0;" class="text-muted">also <a href="https://github.com/atlas-outreach-data-tools/atlasopenmagic-mcp"><code>atlasopenmagic</code></a>, glance via <a href="https://github.com/kratsg/stare"><code>stare</code></a></p>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top:4px;">
             <div>
@@ -300,17 +300,17 @@ uvx atlasopenmagic-mcp serve</code></pre>
               <pre><code class="block"><span class="cmt"># multi-site, one HTTP endpoint</span>
 rucio-mcp.af.uchicago.edu
   &middot; atlas &middot; cms &middot; dune &middot; escape</code></pre>
-              <p class="text-muted" style="font-size:12.5pt;">Browser <strong>OIDC</strong> login via an OAuth bridge. Not every experiment supports OIDC yet (FTS/RSE-dependent) &mdash; the bridge manages the flow.</p>
+              <p class="text-muted" style="font-size:12.5pt;">Browser <strong>OIDC</strong> login via an OAuth bridge. Not every experiment supports OIDC yet (FTS/RSE-dependent); the bridge manages the flow.</p>
             </div>
           </div>
           <div style="display:grid; grid-template-columns: 1.55fr 1fr; gap:18px; margin-top:12px;">
             <div class="callout">
               <p class="label"><i class="fa-solid fa-circle-question"></i>&nbsp; Still being figured out</p>
-              <p style="font-size:12pt;">OIDC UX still varies by VO &mdash; token lifetime &amp; refresh differ; audiences differ (atlas/dune: no custom issuer; cms/escape: extra token-exchange). And on a hung call, who times out &mdash; MCP or LLM?</p>
+              <p style="font-size:12pt;">OIDC UX still varies by VO: token lifetime &amp; refresh differ; audiences differ (atlas/dune: no custom issuer; cms/escape: extra token-exchange). And on a hung call, who times out: MCP or LLM?</p>
             </div>
             <div class="callout teal">
               <p class="label"><i class="fa-solid fa-chart-line"></i>&nbsp; Observability</p>
-              <p style="font-size:12pt;">rucio-mcp exports <strong>Prometheus</strong> metrics &mdash; LLM usage per-site &amp; per-tool (<a href="https://grafana.af.uchicago.edu/d/rucio-mcp-01/rucio-mcp">Grafana</a>).</p>
+              <p style="font-size:12pt;">rucio-mcp exports <strong>Prometheus</strong> metrics: LLM usage per-site &amp; per-tool (<a href="https://grafana.af.uchicago.edu/d/rucio-mcp-01/rucio-mcp">Grafana</a>).</p>
             </div>
           </div>
         </div>
@@ -328,8 +328,8 @@ rucio-mcp.af.uchicago.edu
         <div class="content">
           <div style="display: grid; grid-template-columns: 1fr 0.9fr; gap: 26px;">
             <div>
-              <p>An MCP server runs <strong>inside your JupyterLab pod</strong>. Any agent that reaches it &mdash; Claude Code, Claude Desktop, even your <strong>phone</strong> &mdash; can <code>insert_execute_code_cell</code>, <code>read_cell</code> (incl. plots), <code>execute_code</code> in the live kernel, <code>use_notebook</code>.</p>
-              <p class="text-muted" style="font-size:12.5pt; margin-top:4px;"><strong>&ne; Jupyter AI</strong> (agent <em>inside</em> the notebook server) &mdash; which may lose out to the VS&nbsp;Code workflow many users prefer.</p>
+              <p>An MCP server runs <strong>inside your JupyterLab pod</strong>. Any agent that reaches it (Claude Code, Claude Desktop, even your <strong>phone</strong>) can <code>insert_execute_code_cell</code>, <code>read_cell</code> (incl. plots), <code>execute_code</code> in the live kernel, <code>use_notebook</code>.</p>
+              <p class="text-muted" style="font-size:12.5pt; margin-top:4px;"><strong>&ne; Jupyter AI</strong> (agent <em>inside</em> the notebook server), which may lose out to the VS&nbsp;Code workflow many users prefer.</p>
               <pre><code class="block">claude mcp add jupyter --transport http \
   .../user/&lt;you&gt;/mcp --header "Authorization: Bearer &lt;tok&gt;"</code></pre>
               <div class="callout" style="margin-top:8px;">
@@ -356,16 +356,16 @@ rucio-mcp.af.uchicago.edu
         <div class="content">
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 26px;">
             <div>
-              <p>Not everyone wants a terminal. <strong>OpenWebUI</strong> is a browser chat at <a href="https://af.uchicago.edu/chat">af.uchicago.edu/chat</a> &mdash; backed by a facility knowledge base.</p>
+              <p>Not everyone wants a terminal. <strong>OpenWebUI</strong> is a browser chat at <a href="https://af.uchicago.edu/chat">af.uchicago.edu/chat</a>, backed by a facility knowledge base.</p>
               <ul>
-                <li>Zero install &mdash; just a URL</li>
+                <li>Zero install, just a URL</li>
                 <li>Answers grounded in AF docs &amp; capabilities</li>
                 <li>Same knowledge, friendlier door</li>
               </ul>
               <div class="callout teal" style="margin-top:10px;">
                 <p class="label">Real exchange &middot; user <code>xju</code>, Feb&nbsp;2026</p>
                 <p style="font-size:13.5pt;"><strong>Q:</strong> &ldquo;Are there NVIDIA Triton models available at AF?&rdquo;</p>
-                <p style="font-size:13.5pt; margin-top:4px;"><strong>A:</strong> Yes &mdash; Triton in the AF k8s cluster, serving from CVMFS + an S3 repo (<code>s3://triton-models/&lt;user&gt;/</code>); upload yours, then ask admins to enable it.</p>
+                <p style="font-size:13.5pt; margin-top:4px;"><strong>A:</strong> Yes. Triton in the AF k8s cluster, serving from CVMFS + an S3 repo (<code>s3://triton-models/&lt;user&gt;/</code>); upload yours, then ask admins to enable it.</p>
                 <p style="font-size:13pt; margin-top:6px; font-style:italic;">&ldquo;this&hellip; is not awful and it is correct&rdquo; &mdash; Giordon</p>
               </div>
             </div>
@@ -397,9 +397,9 @@ rucio-mcp.af.uchicago.edu
               <div>
                 <p>Every morning a scheduled agent scans HTCondor and posts a report to Slack: state summary, <strong>hold-reason breakdown</strong>, top users, jobs held &gt;7&nbsp;days, recommended actions.</p>
                 <div class="callout" style="margin-top:8px;">
-                  <p>Today: <strong>448 held of 14,671</strong> (3.1%) &mdash; below the 20% alert line. Holds auto-categorized: wall-time, output-transfer, OOM, &hellip;</p>
+                  <p>Today: <strong>448 held of 14,671</strong> (3.1%), below the 20% alert line. Holds auto-categorized: wall-time, output-transfer, OOM, &hellip;</p>
                 </div>
-                <p style="margin-top:10px; font-size:13.5pt;"><i class="fa-solid fa-terminal text-teal"></i>&nbsp; No HTCondor MCP &mdash; just our own skills around the <code>condor</code> CLI.</p>
+                <p style="margin-top:10px; font-size:13.5pt;"><i class="fa-solid fa-terminal text-teal"></i>&nbsp; No HTCondor MCP, just our own skills around the <code>condor</code> CLI.</p>
               </div>
             </div>
           </div>
@@ -411,22 +411,22 @@ rucio-mcp.af.uchicago.edu
         </section>
         <section id="slide-11b">
           <p class="kicker">What you can use today &middot; agents on your behalf</p>
-          <h2>&hellip;then drafts your fix &mdash; <span class="accent">you approve</span></h2>
+          <h2>&hellip;then drafts your fix, <span class="accent">you approve</span></h2>
           <div class="content">
             <div style="display: grid; grid-template-columns: 0.92fr 1fr; gap: 26px; align-items:center;">
               <div class="shot filled light" style="min-height:0;">
                 <img src="images/htcondor-email-slack.png" width="1578" height="1622" style="max-height:480px; width:auto;" alt="Drafted held-job email posted to Slack, approved by a human, then sent by the agent">
               </div>
               <div>
-                <p>When <em>your</em> jobs are stuck it drafts an <strong>email to you</strong> with a specific fix &mdash; real OOM case: <em>used the actual observed memory vs the limit</em> &rarr; raise <code>request_memory</code>; write big outputs to <code>/data</code>.</p>
+                <p>When <em>your</em> jobs are stuck it drafts an <strong>email to you</strong> with a specific fix. Real OOM case: <em>used the actual observed memory vs the limit</em> &rarr; raise <code>request_memory</code>; write big outputs to <code>/data</code>.</p>
                 <div class="callout" style="margin-top:8px;">
                   <p class="label"><i class="fa-solid fa-user-check"></i>&nbsp; Human-in-the-loop</p>
                   <p>Drafted &rarr; a human replies <code>approve</code> in Slack &rarr; sent. <strong>Never autonomous</strong> (note the stand-down banner).</p>
                 </div>
-                <p class="text-muted" style="margin-top:8px; font-size:12.5pt;"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp; Good advice because it carries AF knowledge (hold-reason taxonomy, <code>c111/c113</code>, <code>/home</code>&hellip;) &mdash; same lesson as the facility <code>CLAUDE.md</code>.</p>
+                <p class="text-muted" style="margin-top:8px; font-size:12.5pt;"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp; Good advice because it carries AF knowledge (hold-reason taxonomy, <code>c111/c113</code>, <code>/home</code>&hellip;); same lesson as the facility <code>CLAUDE.md</code>.</p>
                 <div class="callout teal" style="margin-top:8px;">
                   <p class="label"><i class="fa-solid fa-forward"></i>&nbsp; Thinking ahead</p>
-                  <p style="font-size:12.5pt;">How do we <strong>tag a batch job with its experiment</strong> so the agent gives the right context? ATLAS-only today &mdash; but for FCC / EIC / DUNE / Belle&#8209;II the same agent can&rsquo;t assume everyone&rsquo;s ATLAS.</p>
+                  <p style="font-size:12.5pt;">How do we <strong>tag a batch job with its experiment</strong> so the agent gives the right context? ATLAS-only today, but for FCC / EIC / DUNE / Belle&#8209;II the same agent can&rsquo;t assume everyone&rsquo;s ATLAS.</p>
                 </div>
               </div>
             </div>
@@ -451,19 +451,19 @@ rucio-mcp.af.uchicago.edu
       <section>
       <section id="slide-13">
         <p class="kicker">The core insight</p>
-        <h2>Swap the model freely &mdash; <span class="accent">context</span> makes it useful here</h2>
+        <h2>Swap the model freely: <span class="accent">context</span> makes it useful here</h2>
         <div class="content">
           <div style="display:grid; grid-template-columns: 1fr 1fr 1.15fr; gap:18px; align-items:stretch;">
             <div class="node slate" style="font-size:15pt; padding:14px;">Model<span class="sub">Opus &middot; GPT-5 &middot; <strong>local / NRP-hosted open weights</strong> &rarr; cost control</span></div>
             <div class="node slate" style="font-size:15pt; padding:14px;">Harness<span class="sub">Claude Code &middot; Codex &middot; Copilot</span></div>
-            <div class="node fill" style="font-size:15pt; padding:14px;">Facility context &amp; ATLAS tools<span class="sub">storage, scheduler, Rucio, FastFrames, coffea, pyhf &mdash; the AF</span></div>
+            <div class="node fill" style="font-size:15pt; padding:14px;">Facility context &amp; ATLAS tools<span class="sub">storage, scheduler, Rucio, FastFrames, coffea, pyhf</span></div>
           </div>
           <p class="text-center text-maroon" style="font-size:22pt; margin:10px;"><i class="fa-solid fa-arrows-down-to-line"></i></p>
           <div class="node teal" style="font-size:17pt; padding:14px;">An assistant that&rsquo;s actually useful <em>here</em><span class="sub">routes ntuples to <code>/data</code>, not <code>/home</code></span></div>
           <div class="callout" style="margin-top:18px;">
-            <p style="font-size:16pt;">The first two blocks are <strong>interchangeable</strong> &mdash; pick any model (or self-host to cut cost), any harness. Every win today came from the <strong>third</strong>: the managed <code>CLAUDE.md</code>, the marketplace plugins, the Rucio/AMI MCPs, the condor bot&rsquo;s <code>HTCondor.md</code>.</p>
+            <p style="font-size:16pt;">The first two blocks are <strong>interchangeable</strong>: pick any model (or self-host to cut cost), any harness. Every win today came from the <strong>third</strong>: the managed <code>CLAUDE.md</code>, the marketplace plugins, the Rucio/AMI MCPs, the condor bot&rsquo;s <code>HTCondor.md</code>.</p>
           </div>
-          <p class="text-center text-muted" style="margin-top:12px; font-size:14pt;"><i class="fa-solid fa-bullseye"></i>&nbsp; Pragmatically too: model &amp; harness evolve <em>fast</em> &mdash; we can&rsquo;t run a cluster <em>and</em> chase that. Facility context is the <strong>tractable</strong> scope.</p>
+          <p class="text-center text-muted" style="margin-top:12px; font-size:14pt;"><i class="fa-solid fa-bullseye"></i>&nbsp; Pragmatically too: model &amp; harness evolve <em>fast</em>, so we can&rsquo;t run a cluster <em>and</em> chase that. Facility context is the <strong>tractable</strong> scope.</p>
         </div>
         <div class="footnote">Self-hosting option for open-weight models: <a href="https://nrp.ai/llms/">NRP-hosted LLMs</a> (nrp.ai/llms).</div>
         <aside class="notes">
@@ -480,7 +480,7 @@ rucio-mcp.af.uchicago.edu
         <div class="content">
           <div class="callout" style="margin-top:2px;">
             <p class="label"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp; What actually happened</p>
-            <p>Our cluster agents confidently recommended <strong>Lustre/MDS tuning</strong> for a filesystem that is actually <strong>Ceph</strong> &mdash; they had zero Ceph context. Plausible, fluent, and wrong.</p>
+            <p>Our cluster agents confidently recommended <strong>Lustre/MDS tuning</strong> for a filesystem that is actually <strong>Ceph</strong>. They had zero Ceph context. Plausible, fluent, and wrong.</p>
           </div>
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:14px;">
             <blockquote style="font-size:16pt; margin:0;">
@@ -554,7 +554,7 @@ rucio-mcp.af.uchicago.edu
           <div style="display:grid; grid-template-columns: 0.42fr 1fr; gap:22px; margin-top:14px; align-items:center;">
             <div>
               <p class="text-maroon" style="font-weight:600; font-size:13.5pt; margin:0 0 4px;"><i class="fa-solid fa-people-group"></i>&nbsp; Think of it as a sports team</p>
-              <p class="text-muted" style="font-size:12.5pt; margin:0;">A shared <strong>glossary</strong> keeps the team&rsquo;s language consistent. <span class="text-maroon">(&ldquo;Elwood&rdquo; is our internal name &mdash; nothing public yet.)</span></p>
+              <p class="text-muted" style="font-size:12.5pt; margin:0;">A shared <strong>glossary</strong> keeps the team&rsquo;s language consistent. <span class="text-maroon">(&ldquo;Elwood&rdquo; is our internal name, nothing public yet.)</span></p>
             </div>
             <div>
               <div class="shot filled light" style="min-height:0;">
@@ -575,7 +575,7 @@ rucio-mcp.af.uchicago.edu
         <p class="kicker">The architecture &middot; portability, concretely</p>
         <h2>Same engine, different <span class="accent">playbook</span></h2>
         <div class="content">
-          <p>Only the playbook changes per facility/experiment &mdash; the reasoning engine (the &ldquo;coach&rdquo;) is untouched. The headline difference is usually <code>data_tool</code>:</p>
+          <p>Only the playbook changes per facility/experiment. The reasoning engine (the &ldquo;coach&rdquo;) is untouched. The headline difference is usually <code>data_tool</code>:</p>
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:6px;">
             <div>
               <p class="tag">playbook/atlas @ UChicago AF</p>
@@ -593,11 +593,11 @@ rucio-mcp.af.uchicago.edu
             </div>
           </div>
           <div class="callout teal" style="margin-top:16px;">
-            <p>The per-tool <strong>skills are facility-independent</strong> &mdash; written once, reused everywhere &mdash; so each experiment/facility only writes its thin playbook, not a whole stack. <strong>The goal: stop re-developing the same agentic tooling in parallel.</strong></p>
+            <p>The per-tool <strong>skills are facility-independent</strong> (written once, reused everywhere), so each experiment/facility only writes its thin playbook, not a whole stack. <strong>The goal: stop re-developing the same agentic tooling in parallel.</strong></p>
           </div>
           <p class="text-muted" style="font-size:12.5pt; margin-top:8px;">You&rsquo;ve already met the ATLAS playbook in pieces: the managed <code>CLAUDE.md</code>, the marketplace plugins, the agent&rsquo;s <code>HTCondor.md</code>.</p>
         </div>
-        <div class="footnote"><i class="fa-solid fa-circle-question"></i>&nbsp; Still open: how to <em>link</em> &amp; reuse others&rsquo; skills without copying them in &mdash; <a href="https://github.com/usatlas/marketplace/issues/60">usatlas/marketplace#60</a> (options exist; no best practice yet).</div>
+        <div class="footnote"><i class="fa-solid fa-circle-question"></i>&nbsp; Still open: how to <em>link</em> &amp; reuse others&rsquo; skills without copying them in: <a href="https://github.com/usatlas/marketplace/issues/60">usatlas/marketplace#60</a> (options exist; no best practice yet).</div>
         <aside class="notes">
           Concretely, here's a playbook swap. On the left, ATLAS at UChicago: data_tool delegates to rucio-mcp because we're on the grid; transforms via coffea or FastFrames; batch via HTCondor; inference via pyhf or TRExFitter.
           On the right, a different facility — say a US Higgs-factory effort — whose data_tool today is just "download or browse files off EOS or the web," batch is local or Slurm. Same reasoning engine, same high-level tool names. Only the playbook differs, and the biggest difference is how data_tool is wired.
@@ -613,9 +613,9 @@ rucio-mcp.af.uchicago.edu
         <div class="content">
           <div style="display:grid; grid-template-columns: 0.62fr 1fr; gap:24px; align-items:center;">
             <div>
-              <p>The target: the analyzer describes the <em>physics</em>; the agent runs the <em>loop</em> &mdash; find data, generate code, submit jobs, recover from errors, make histograms, fit &mdash; refining as it goes.</p>
+              <p>The target: the analyzer describes the <em>physics</em>; the agent runs the <em>loop</em>: find data, generate code, submit jobs, recover from errors, make histograms, and fit, re-running as needed.</p>
               <p class="text-muted" style="font-size:13pt;">Every box here is a tool we&rsquo;ve shown today. Stitching them into one supervised loop is the work ahead.</p>
-              <p class="text-muted" style="font-size:12.5pt; margin-top:8px;"><i class="fa-solid fa-circle-info"></i>&nbsp; &ldquo;Elwood&rdquo; is our internal project name &mdash; nothing public yet.</p>
+              <p class="text-muted" style="font-size:12.5pt; margin-top:8px;"><i class="fa-solid fa-circle-info"></i>&nbsp; &ldquo;Elwood&rdquo; is our internal project name, nothing public yet.</p>
             </div>
             <div class="shot filled light" style="min-height:0;">
               <img src="images/elwood-concept.png" width="1536" height="1024" style="max-height:470px; width:auto;" alt="Elwood end-to-end: chat-driven analysis across AMI/Rucio, code generation, HTCondor, monitoring, error recovery, histograms, and statistics">
@@ -678,7 +678,7 @@ rucio-mcp.af.uchicago.edu
               </div>
             </div>
           </div>
-          <div class="footnote">Same agent, same tools across sites &mdash; only the per-site auth/playbook differs. Granularity vs identity is a genuine open trade-off &rarr; discuss.</div>
+          <div class="footnote">Same agent, same tools across sites; only the per-site auth/playbook differs. Granularity vs identity is a genuine open trade-off &rarr; discuss.</div>
           <aside class="notes">
             This is deployed, not a slide: one hosted rucio-mcp at rucio-mcp.af.uchicago.edu serves four experiments, path-routed — /site/atlas, escape, cms, dune. But HOW you carve up MCPs is a real design choice, so here are three topologies with their caveats.
             We run one server, many sites: a single deploy, and an analyzer adds rucio-atlas and rucio-escape as separate entries — but all the per-VO auth lives in one process. The alternative is one server per site: cleaner isolation and independent auth/scaling, but now you operate N servers. Or a single gateway fronting sub-MCPs: one endpoint and identity, but you inherit token-delegation sprawl and a choke point — and FastMCP composition only allows one auth provider per server, which is why something like PandaMCP delegates auth to the PanDA server.
@@ -686,24 +686,24 @@ rucio-mcp.af.uchicago.edu
           </aside>
         </section>
         <section id="slide-17-2">
-          <p class="kicker">Let&rsquo;s discuss &mdash; the open questions</p>
+          <p class="kicker">Let&rsquo;s discuss &middot; the open questions</p>
           <h2>What should we decide <span class="accent">together?</span></h2>
           <div class="content">
             <div style="display:grid; grid-template-columns: repeat(3,1fr); gap:12px;">
               <div class="card">
                 <h3 style="font-size:16pt;"><i class="fa-solid fa-sitemap"></i>&nbsp; Granularity &amp; identity</h3>
-                <p style="font-size:12.5pt;">One MCP per service, or a single gateway delegating identity? (FastMCP allows one auth provider/server &mdash; PandaMCP delegates to PanDA.)</p>
+                <p style="font-size:12.5pt;">One MCP per service, or a single gateway delegating identity? (FastMCP allows one auth provider/server; PandaMCP delegates to PanDA.)</p>
               </div>
               <div class="card teal">
                 <h3 style="font-size:16pt;"><i class="fa-solid fa-map-location-dot"></i>&nbsp; Where do knowledge &amp; skills live?</h3>
-                <p style="font-size:12.5pt;">Facility knowledge: shared <strong>marketplace</strong> vs <strong>with the facility</strong> (Puppet). And tool skills &mdash; a <code>TopCPToolkit</code> skill in the marketplace, or <strong>with the framework</strong>? Today: scattered.</p>
+                <p style="font-size:12.5pt;">Facility knowledge: shared <strong>marketplace</strong> vs <strong>with the facility</strong> (Puppet). And tool skills: a <code>TopCPToolkit</code> skill in the marketplace, or <strong>with the framework</strong>? Today: scattered.</p>
               </div>
               <div class="card">
                 <h3 style="font-size:16pt;"><i class="fa-solid fa-book-atlas"></i>&nbsp; Who maintains the playbook?</h3>
-                <p style="font-size:12.5pt;">Each facility writes its own context &mdash; but who reviews it and keeps it true over time?</p>
+                <p style="font-size:12.5pt;">Each facility writes its own context, but who reviews it and keeps it true over time?</p>
               </div>
               <div class="card teal">
-                <h3 style="font-size:16pt;"><i class="fa-solid fa-shield-halved"></i>&nbsp; What may an agent do &mdash; &amp; how sandboxed?</h3>
+                <h3 style="font-size:16pt;"><i class="fa-solid fa-shield-halved"></i>&nbsp; What may an agent do, and how sandboxed?</h3>
                 <p style="font-size:12.5pt;">Write/submit/email need a human gate. We isolate with <strong>k8s</strong> pods; no-k8s sites &rarr; <a href="https://github.com/containers/bubblewrap">bubblewrap</a>?</p>
               </div>
               <div class="card">
@@ -712,13 +712,13 @@ rucio-mcp.af.uchicago.edu
               </div>
               <div class="card teal">
                 <h3 style="font-size:16pt;"><i class="fa-solid fa-store"></i>&nbsp; Across AFs &amp; experiments?</h3>
-                <p style="font-size:12.5pt;">A shared commons across AFs &mdash; and one facility may serve <strong>many experiments</strong> w/ heterogeneous frameworks. Keep facility vs experiment context modular &mdash; where&rsquo;s the line?</p>
+                <p style="font-size:12.5pt;">A shared commons across AFs. And one facility may serve <strong>many experiments</strong> w/ heterogeneous frameworks. Keep facility vs experiment context modular: where&rsquo;s the line?</p>
               </div>
             </div>
             <p class="text-center" style="margin-top:12px; font-size:15pt;"><strong>My bet:</strong> the model and harness are the easy part. <span class="text-maroon"><strong>Context, identity, and trust</strong></span> are the facility&rsquo;s homework.</p>
             <div class="callout teal" style="margin-top:12px;">
               <p class="label"><i class="fa-solid fa-cube"></i>&nbsp; What&rsquo;s <a href="https://github.com/containers/bubblewrap">bubblewrap</a>?</p>
-              <p style="font-size:12.5pt;">The sandboxing tech behind Flatpak: it isolates a process from the rest of the Linux system &mdash; no access to your files, network, or hardware unless you explicitly grant it. A lightweight way to fence in an <strong>agent&rsquo;s tool execution</strong> on facilities without Kubernetes.</p>
+              <p style="font-size:12.5pt;">The sandboxing tech behind Flatpak: it isolates a process from the rest of the Linux system, with no access to your files, network, or hardware unless you explicitly grant it. A lightweight way to fence in an <strong>agent&rsquo;s tool execution</strong> on facilities without Kubernetes.</p>
             </div>
           </div>
           <aside class="notes">
@@ -735,7 +735,7 @@ rucio-mcp.af.uchicago.edu
         <div class="content">
           <div style="display:grid; grid-template-columns: 1.2fr 1fr; gap:28px;">
             <div>
-              <p>Swap the model and the harness freely. <strong>The facility context is what makes it useful here</strong> &mdash; and it ports to the next AF.</p>
+              <p>Swap the model and the harness freely. <strong>The facility context is what makes it useful here</strong>, and it ports to the next AF.</p>
               <h3 style="margin-top:8px;">A team effort at the UChicago AF</h3>
               <ul>
                 <li><strong>Ilija Vukotic</strong> &mdash; OpenClaw/Shannon agents, ES MCP</li>
@@ -747,15 +747,15 @@ rucio-mcp.af.uchicago.edu
               <p class="label">Try it / read more</p>
               <ul style="margin:2px 0;">
                 <li><code>/plugins marketplace add usatlas/marketplace</code></li>
-                <li><code>npx skills add usatlas/marketplace</code> &mdash; pick skills</li>
+                <li><code>npx skills add usatlas/marketplace</code> (pick skills)</li>
                 <li>Docs: <a href="https://usatlas.github.io/af-docs/ai">usatlas.github.io/af-docs/ai</a></li>
                 <li><a href="https://github.com/usatlas/marketplace">github.com/usatlas/marketplace</a> &middot; <code>rucio-mcp</code> &middot; <code>ami-mcp</code> &middot; <code>stare</code></li>
               </ul>
-              <p style="margin-top:10px; font-size:15pt;"><strong>Now &mdash; let&rsquo;s discuss.</strong></p>
+              <p style="margin-top:10px; font-size:15pt;"><strong>Now, let&rsquo;s discuss.</strong></p>
             </div>
           </div>
         </div>
-        <div class="footnote">Giordon Stark &middot; kratsg &middot; USATLAS F2F @ HTC26 &middot; 2026&#8209;06&#8209;09 &mdash; in the spirit of Gordon Watts&rsquo; CHEP&nbsp;2026 ecosystem framing.</div>
+        <div class="footnote">Giordon Stark &middot; kratsg &middot; USATLAS F2F @ HTC26 &middot; 2026&#8209;06&#8209;09. In the spirit of Gordon Watts&rsquo; CHEP&nbsp;2026 ecosystem framing.</div>
         <aside class="notes">
           To close: we turned a generic LLM into a facility-aware collaborator, and the thing that did it — context — is exactly the thing that ports to your facility next.
           Genuinely a team effort: Ilija on the agent infrastructure and ES MCP, Fengping on Kubernetes, Keycloak, and Jupyter AI, Rob driving the vision, the marketplace, and the Genesis tie-in — plus the wider AF team.
