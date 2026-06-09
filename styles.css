@@ -444,3 +444,16 @@
   letter-spacing: 0.12em; text-transform: uppercase; color: var(--maroon); margin-bottom: 4px;
 }
 .callout.teal .label { color: var(--teal); }
+
+/* ===========================================
+   SLIDE NUMBER
+   =========================================== */
+.reveal .slide-number {
+  background: none;
+  color: var(--muted-color);
+  font-family: var(--body-font);
+  font-size: 11pt;
+  right: 14px;
+  bottom: 10px;
+}
+.reveal .slide-number a { color: var(--muted-color); }

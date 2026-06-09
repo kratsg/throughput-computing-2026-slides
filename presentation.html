@@ -633,28 +633,48 @@ rucio-mcp.af.uchicago.edu
 
       <section>
         <section id="slide-17-1">
-          <p class="kicker">The portable future &middot; one server, many sites</p>
-          <h2>A real deployment &mdash; and a design choice</h2>
+          <p class="kicker">The portable future &middot; MCP granularity</p>
+          <h2>One MCP, or many? <span class="accent">Three topologies</span></h2>
           <div class="content">
-            <p>One hosted <code>rucio-mcp</code> serves several experiments, path-routed &mdash; each with its own auth:</p>
-            <pre><code class="block">rucio-mcp.af.uchicago.edu/site/<span class="kw">atlas</span>
-rucio-mcp.af.uchicago.edu/site/<span class="kw">escape</span>     <span class="cmt"># also: cms, dune</span></code></pre>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:8px;">
+            <p style="margin:0 0 4px;"><i class="fa-solid fa-circle-check text-teal"></i>&nbsp; <strong>Live today:</strong> <code>rucio-mcp.af.uchicago.edu/site/{atlas&middot;escape&middot;cms&middot;dune}</code></p>
+            <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:8px;">
               <div class="card">
-                <h3 style="font-size:16pt;">The choice we made</h3>
-                <p style="font-size:13.5pt;">One MCP, many sites &rarr; an analyzer adds <code>rucio-atlas</code> and <code>rucio-escape</code> as separate entries and delegates to each.</p>
+                <p style="margin:0 0 6px;"><span class="tag">what we run</span></p>
+                <h3 style="font-size:15.5pt; margin:0 0 6px;">One server, many sites</h3>
+                <div style="display:flex; align-items:center; gap:6px; margin-bottom:8px;">
+                  <p class="node" style="font-size:11pt; padding:6px 8px;">you</p>
+                  <span class="flow-arrow" style="font-size:14pt;">&rarr;</span>
+                  <p class="node fill" style="font-size:11pt; padding:6px 8px;">rucio-mcp<span class="sub" style="font-size:9.5pt;">/site/atlas&middot;escape&hellip;</span></p>
+                </div>
+                <p style="font-size:12pt;"><i class="fa-solid fa-check text-teal"></i>&nbsp; one deploy; add <code>rucio-atlas</code>, <code>rucio-escape</code> separately</p>
+                <p style="font-size:12pt;"><i class="fa-solid fa-triangle-exclamation text-maroon"></i>&nbsp; per-VO auth inside one process</p>
               </div>
               <div class="card teal">
-                <h3 style="font-size:16pt;">The alternative</h3>
-                <p style="font-size:13.5pt;">A separate server per site. Cleaner isolation, but more to host &mdash; and <a href="https://gofastmcp.com/servers/composition">FastMCP composition</a> allows only <em>one</em> auth provider per server.</p>
+                <p style="margin:0 0 6px;"><span class="tag teal">alt</span></p>
+                <h3 style="font-size:15.5pt; margin:0 0 6px;">One server per site</h3>
+                <div style="display:flex; align-items:center; gap:6px; margin-bottom:8px;">
+                  <p class="node teal" style="font-size:11pt; padding:6px 8px;">rucio-atlas</p>
+                  <p class="node teal" style="font-size:11pt; padding:6px 8px;">rucio-escape</p>
+                </div>
+                <p style="font-size:12pt;"><i class="fa-solid fa-check text-teal"></i>&nbsp; clean isolation; per-site auth &amp; scaling</p>
+                <p style="font-size:12pt;"><i class="fa-solid fa-triangle-exclamation text-maroon"></i>&nbsp; N servers to run &amp; maintain</p>
+              </div>
+              <div class="card">
+                <p style="margin:0 0 6px;"><span class="tag slate">alt</span></p>
+                <h3 style="font-size:15.5pt; margin:0 0 6px;">Single gateway</h3>
+                <div style="display:flex; align-items:center; gap:6px; margin-bottom:8px;">
+                  <p class="node slate" style="font-size:11pt; padding:6px 8px;">mcp.af&hellip;<span class="sub" style="font-size:9.5pt;">&rarr; sub-MCPs</span></p>
+                </div>
+                <p style="font-size:12pt;"><i class="fa-solid fa-check text-teal"></i>&nbsp; one endpoint &amp; identity</p>
+                <p style="font-size:12pt;"><i class="fa-solid fa-triangle-exclamation text-maroon"></i>&nbsp; token sprawl / choke point; <a href="https://gofastmcp.com/servers/composition">FastMCP</a> = 1 auth provider/server</p>
               </div>
             </div>
-            <p style="margin-top:12px;"><i class="fa-solid fa-wind text-teal"></i>&nbsp; <strong>Tailwind:</strong> Anthropic is a DOE <em>Genesis Mission</em> collaborator &mdash; MCP servers + skills for science. The AF is a working pilot.</p>
           </div>
+          <div class="footnote">Same agent, same tools across sites &mdash; only the per-site auth/playbook differs. Granularity vs identity is a genuine open trade-off &rarr; discuss.</div>
           <aside class="notes">
-            Portability isn't a slide — it's deployed. One hosted rucio-mcp at rucio-mcp.af.uchicago.edu serves several experiments, path-routed: /site/atlas, /site/escape, also cms and dune. Same code, same tools — the playbook differs per site, and each site authenticates separately.
-            But notice this is a DESIGN CHOICE, and it's exactly the granularity question. We chose ONE server serving many sites, so an analyzer configures rucio-atlas and rucio-escape as two entries and delegates to each with its own auth. The alternative is a server per site — cleaner isolation but more to operate, and there's a real constraint: FastMCP's server composition only allows one auth provider per server, which is why something like PandaMCP delegates auth to the PanDA server instead. Hold that for the discussion.
-            And the tailwind: Anthropic joined DOE's Genesis Mission for MCP servers and skills for science — the pattern we built bottom-up, blessed top-down.
+            This is deployed, not a slide: one hosted rucio-mcp at rucio-mcp.af.uchicago.edu serves four experiments, path-routed — /site/atlas, escape, cms, dune. But HOW you carve up MCPs is a real design choice, so here are three topologies with their caveats.
+            We run one server, many sites: a single deploy, and an analyzer adds rucio-atlas and rucio-escape as separate entries — but all the per-VO auth lives in one process. The alternative is one server per site: cleaner isolation and independent auth/scaling, but now you operate N servers. Or a single gateway fronting sub-MCPs: one endpoint and identity, but you inherit token-delegation sprawl and a choke point — and FastMCP composition only allows one auth provider per server, which is why something like PandaMCP delegates auth to the PanDA server.
+            There's no obviously-right answer — that's the point, and it's a discussion seed. (Aside: this whole MCP-for-science pattern is also what DOE's Genesis Mission, with Anthropic, is pushing — we're a bottom-up pilot of it.)
           </aside>
         </section>
         <section id="slide-17-2">
@@ -667,8 +687,8 @@ rucio-mcp.af.uchicago.edu/site/<span class="kw">escape</span>     <span class="c
                 <p style="font-size:12.5pt;">One MCP per service, or a single gateway delegating identity? (FastMCP allows one auth provider/server &mdash; PandaMCP delegates to PanDA.)</p>
               </div>
               <div class="card teal">
-                <h3 style="font-size:16pt;"><i class="fa-solid fa-map-location-dot"></i>&nbsp; Where does knowledge live?</h3>
-                <p style="font-size:12.5pt;">Shared <strong>marketplace</strong> vs shipped <strong>with the facility</strong> (Puppet). Today: both &rarr; duplication &amp; context bloat.</p>
+                <h3 style="font-size:16pt;"><i class="fa-solid fa-map-location-dot"></i>&nbsp; Where do knowledge &amp; skills live?</h3>
+                <p style="font-size:12.5pt;">Facility knowledge: shared <strong>marketplace</strong> vs <strong>with the facility</strong> (Puppet). And tool skills &mdash; a <code>TopCPToolkit</code> skill in the marketplace, or <strong>with the framework</strong>? Today: scattered.</p>
               </div>
               <div class="card">
                 <h3 style="font-size:16pt;"><i class="fa-solid fa-book-atlas"></i>&nbsp; Who maintains the playbook?</h3>
@@ -683,11 +703,15 @@ rucio-mcp.af.uchicago.edu/site/<span class="kw">escape</span>     <span class="c
                 <p style="font-size:12.5pt;">At HL-LHC scale: hosted frontier models vs self-hosted open weights on facility GPUs?</p>
               </div>
               <div class="card teal">
-                <h3 style="font-size:16pt;"><i class="fa-solid fa-store"></i>&nbsp; One commons for all AFs?</h3>
-                <p style="font-size:12.5pt;">A shared USATLAS marketplace + playbooks across <em>every</em> AF &mdash; who curates it?</p>
+                <h3 style="font-size:16pt;"><i class="fa-solid fa-store"></i>&nbsp; Across AFs &amp; experiments?</h3>
+                <p style="font-size:12.5pt;">A shared commons across AFs &mdash; and one facility may serve <strong>many experiments</strong> w/ heterogeneous frameworks. Keep facility vs experiment context modular &mdash; where&rsquo;s the line?</p>
               </div>
             </div>
-            <p class="text-center" style="margin-top:14px; font-size:15pt;"><strong>My bet:</strong> the model and harness are the easy part. <span class="text-maroon"><strong>Context, identity, and trust</strong></span> are the facility&rsquo;s homework.</p>
+            <p class="text-center" style="margin-top:12px; font-size:15pt;"><strong>My bet:</strong> the model and harness are the easy part. <span class="text-maroon"><strong>Context, identity, and trust</strong></span> are the facility&rsquo;s homework.</p>
+            <div class="callout teal" style="margin-top:12px;">
+              <p class="label"><i class="fa-solid fa-cube"></i>&nbsp; What&rsquo;s <a href="https://github.com/containers/bubblewrap">bubblewrap</a>?</p>
+              <p style="font-size:12.5pt;">The sandboxing tech behind Flatpak: it isolates a process from the rest of the Linux system &mdash; no access to your files, network, or hardware unless you explicitly grant it. A lightweight way to fence in an <strong>agent&rsquo;s tool execution</strong> on facilities without Kubernetes.</p>
+            </div>
           </div>
           <aside class="notes">
             This is what I actually want from the next 10 minutes. Six questions, none of which a vendor answers for us.
@@ -744,7 +768,7 @@ rucio-mcp.af.uchicago.edu/site/<span class="kw">escape</span>     <span class="c
       margin: 0,
       controls: true,
       progress: true,
-      slideNumber: false,
+      slideNumber: 'c/t',
       hash: true,
       transition: 'slide',
       center: false,
