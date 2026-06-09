@@ -23,10 +23,18 @@
     <div class="slides">
 
       <section id="title">
-        <p class="kicker">USATLAS Face-to-Face &middot; Throughput Computing Week 2026</p>
-        <h1>LLM-Assisted Analysis<br>at the UChicago AF</h1>
-        <p class="subtitle">Agentic tools your analysis can use&nbsp;&mdash;&nbsp;today</p>
-        <p class="byline">Giordon Stark (UC&nbsp;Santa&nbsp;Cruz / SCIPP) &middot; on behalf of the UChicago AF team &middot; 2026&#8209;06&#8209;09</p>
+        <div style="display:grid; grid-template-columns: 1.25fr 0.85fr; gap:40px; align-items:center; width:100%;">
+          <div>
+            <p class="kicker">USATLAS Face-to-Face &middot; Throughput Computing Week 2026</p>
+            <h1>LLM-Assisted Analysis<br>at the UChicago AF</h1>
+            <p class="subtitle">Agentic tools your analysis can use&nbsp;&mdash;&nbsp;today</p>
+            <p class="byline">Giordon Stark (UC&nbsp;Santa&nbsp;Cruz / SCIPP) &middot; on behalf of the UChicago AF team &middot; 2026&#8209;06&#8209;09</p>
+          </div>
+          <div style="text-align:center;">
+            <img src="images/title-hero.png" alt="Agentic intelligence for HEP infrastructure" style="max-width:100%; max-height:540px; border-radius:12px; box-shadow:0 8px 28px rgba(92,0,0,0.20);">
+          </div>
+        </div>
+        <div class="footnote">Slides AI-assisted by Claude (Anthropic &middot; Opus&nbsp;4.8, 1M) &middot; title illustration AI-generated.</div>
         <aside class="notes">
           Hi all. I'm Giordon. This is the first of four talks seeding discussion on agentic tools for HL-LHC analysis facilities.
           My job: catch you up on what an ATLAS analyzer can actually DO today on the UChicago AF, the architecture behind it, and why it's built to be portable.
@@ -119,10 +127,11 @@
                   <li><strong>This talk:</strong> one facility&rsquo;s instance, running now &mdash; and the claim that <strong>facility context</strong> is the decisive layer, built to port.</li>
                 </ul>
               </div>
-              <div class="shot">
-                <i class="fa-solid fa-image"></i>
-                <p class="shot-label">SCREENSHOT: Watts, &ldquo;The Analysis Ecosystem&rdquo;</p>
-                <p class="shot-hint">the boat diagram, ~slide&nbsp;25 of his CHEP&nbsp;2026 deck</p>
+              <div>
+                <div class="shot filled light">
+                  <img src="images/watts-analysis-ecosystem.png" alt="Gordon Watts' Analysis Ecosystem boat diagram">
+                </div>
+                <p class="shot-hint" style="text-align:center; margin-top:4px;">From G. Watts&rsquo; CHEP&nbsp;2026 slides &middot; &copy; Gordon Watts + AI</p>
               </div>
             </div>
           </div>
@@ -198,7 +207,7 @@
               <table>
                 <tr><th>Path</th><th>Quota</th><th>Use for</th></tr>
                 <tr><td><code>/home/$USER</code></td><td>100&nbsp;GB, backed up</td><td>Code, scripts, condor files</td></tr>
-                <tr><td><code>/data/$USER</code></td><td>5&nbsp;TB</td><td>ROOT files, datasets</td></tr>
+                <tr><td><code>/data/$USER</code></td><td>5&nbsp;TB, not backed up</td><td>ROOT files, datasets</td></tr>
                 <tr><td><code>/scratch</code></td><td>node-local</td><td>Ephemeral &mdash; copy out before exit</td></tr>
               </table>
               <pre><code class="block"><span class="cmt"># live monitor (DO NOT use: watch condor_q)</span>
@@ -308,14 +317,12 @@ rucio-mcp.af.uchicago.edu
                 <p style="font-size:13.5pt;">Servers have finite lifetimes (equitable sharing) &rarr; you re-mint URL + token each respawn. <em>Idea:</em> a Keycloak-OIDC reverse-proxy &rarr; one token, pick your server in-browser (but one at a time).</p>
               </div>
             </div>
-            <div class="shot">
-              <i class="fa-solid fa-mobile-screen-button"></i>
-              <p class="shot-label">VIDEO / SCREENSHOTS: phone &rarr; notebook</p>
-              <p class="shot-hint">Agent on a phone creating &amp; running cells in a live AF JupyterLab session</p>
+            <div class="shot filled" style="min-height:0;">
+              <video src="images/jupyter-mcp-demo.mp4" controls preload="metadata" playsinline style="width:100%; max-height:430px;"></video>
             </div>
           </div>
         </div>
-        <div class="footnote">Jupyter MCP (streamable-HTTP extension): <code>jupyter-mcp-server.datalayer.tech/providers/jupyter-streamable-http-extension</code></div>
+        <div class="footnote"><a href="https://jupyter-mcp-server.datalayer.tech/providers/jupyter-streamable-http-extension/">Jupyter MCP streamable-HTTP extension</a> &middot; full-size demo video: <a href="https://drive.google.com/file/d/1H5k_-l_fpzj4PRB7e_rlh_jY6SGyDPEM/view">Google&nbsp;Drive</a>.</div>
         <aside class="notes">
           My favorite demo. The Jupyter MCP runs inside your JupyterLab pod, so the chat happens in ANY agent that reaches the endpoint — I've driven a live AF notebook from my phone. Kick off a long cell from your laptop, check it from your phone on the bus.
           Distinguish this from Jupyter AI, which puts the agent INSIDE the notebook server. That's a different bet, and honestly it may lose out — a lot of our users prefer the VS Code workflow over JupyterLab.
@@ -329,7 +336,7 @@ rucio-mcp.af.uchicago.edu
         <div class="content">
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 26px;">
             <div>
-              <p>Not everyone wants a terminal. <strong>OpenWebUI</strong> is a browser chat &mdash; deployed on the AF, backed by a facility knowledge base.</p>
+              <p>Not everyone wants a terminal. <strong>OpenWebUI</strong> is a browser chat at <a href="https://af.uchicago.edu/chat">af.uchicago.edu/chat</a> &mdash; backed by a facility knowledge base.</p>
               <ul>
                 <li>Zero install &mdash; just a URL</li>
                 <li>Answers grounded in AF docs &amp; capabilities</li>
@@ -342,14 +349,15 @@ rucio-mcp.af.uchicago.edu
                 <p style="font-size:13pt; margin-top:6px; font-style:italic;">&ldquo;this&hellip; is not awful and it is correct&rdquo; &mdash; Giordon</p>
               </div>
             </div>
-            <div class="shot">
-              <i class="fa-solid fa-comments"></i>
-              <p class="shot-label">SCREENSHOT: OpenWebUI Triton answer</p>
-              <p class="shot-hint">The assistant answering xju&rsquo;s Triton question with correct AF specifics</p>
+            <div>
+              <div class="shot filled light">
+                <img src="images/webui-landing.png" alt="OpenWebUI AF assistant landing at af.uchicago.edu/chat">
+              </div>
+              <p class="shot-hint" style="text-align:center; margin-top:4px;">Even the suggested prompts are AF-specific: quota, GPUs, Varnish cache-hit at MWT2&hellip;</p>
             </div>
           </div>
         </div>
-        <div class="footnote">It also correctly pointed <code>xju</code> to xAOD/coffea/AnalysisBase examples. Triton&rarr;athena wiring: <a href="https://indico.cern.ch/event/1471803/contributions/6967260/">Vakho Tsulaia, CHEP&nbsp;2026</a>.</div>
+        <div class="footnote">Assistant built by Ilija Vukotic (<a href="https://docs.google.com/presentation/d/1Pz7FSHPGWGXi_KYDtBIX56HGgJZd1g57DXhtnqXX0rY/edit">slides</a>) &middot; it also pointed <code>xju</code> to xAOD/coffea examples &middot; Triton&rarr;athena: <a href="https://indico.cern.ch/event/1471803/contributions/6967260/">Vakho Tsulaia, CHEP&nbsp;2026</a>.</div>
         <aside class="notes">
           Not everyone lives in a terminal. OpenWebUI is a plain browser chat we host, backed by an AF knowledge base — zero install, just a URL.
           This is a real exchange from during my February talk: user xju asked whether Triton models are available, and it correctly described the deployment — k8s, CVMFS plus an S3 model repo at s3://triton-models/username, upload yours then ask admins to enable it. He then asked about analysis code examples and it correctly pointed him to our xAOD, coffea, and AnalysisBase tutorials. My reaction at the time: "this is not awful and it is correct." Faint praise, but the point stands — facility-specific knowledge a stock chatbot doesn't have.
@@ -357,38 +365,54 @@ rucio-mcp.af.uchicago.edu
         </aside>
       </section>
 
-      <section id="slide-11">
-        <p class="kicker">What you can use today &middot; agents on your behalf</p>
-        <h2>An agent watches the cluster <span class="accent">for you</span></h2>
-        <div class="content">
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
-            <div>
-              <p>A scheduled agent scans HTCondor daily <span class="text-muted">(today: 3.1% held &mdash; healthy)</span> and, when <em>your</em> jobs are stuck, drafts you a specific fix:</p>
-              <div class="callout">
-                <p style="font-size:14pt;">&ldquo;56 jobs held: <strong>out of memory</strong> &mdash; used 32,694&nbsp;MB vs a 32,768&nbsp;MB limit. Bump <code>request_memory</code> to ~36,000. Write large outputs to <code>/data</code>, not <code>/home</code>.&rdquo;</p>
+      <section>
+        <section id="slide-11">
+          <p class="kicker">What you can use today &middot; agents on your behalf</p>
+          <h2>An agent watches the cluster <span class="accent">for you</span></h2>
+          <div class="content">
+            <div style="display: grid; grid-template-columns: 0.92fr 1fr; gap: 26px; align-items:center;">
+              <div class="shot filled light" style="min-height:0;">
+                <img src="images/htcondor-daily-report-slack.png" width="1596" height="1828" style="max-height:540px; width:auto;" alt="Daily HTCondor cluster report posted to Slack by the AI monitor agent">
               </div>
-              <p style="margin-top:10px; font-size:13.5pt;"><i class="fa-solid fa-user-check text-teal"></i>&nbsp; <strong>Human-in-the-loop:</strong> drafted &rarr; approved in Slack &rarr; sent. Never autonomous. <span class="text-muted">(No HTCondor MCP &mdash; just skills around the <code>condor</code> CLI.)</span></p>
-            </div>
-            <div>
-              <p class="text-muted" style="font-size:12pt; margin-bottom:2px;">It only gives good advice because it carries AF knowledge (<code>HTCondor.md</code>):</p>
-              <table>
-                <tr><th>Hold reason</th><th>The fix it knows</th></tr>
-                <tr><td>OOM (cgroup)</td><td>Raise memory request</td></tr>
-                <tr><td><code>errno 122</code> disk quota</td><td>Free space &rarr; <code>rm</code> &rarr; resubmit</td></tr>
-                <tr><td><code>errno 13</code> on <code>c111/c113</code></td><td>Sysadmin issue &mdash; don&rsquo;t email user</td></tr>
-                <tr><td>wall-time &gt; 4h (short)</td><td>Split into shorter chunks</td></tr>
-              </table>
-              <p class="text-muted" style="font-size:12.5pt;"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp; Same lesson as the facility <code>CLAUDE.md</code>: encoded knowledge &rarr; useful agent.</p>
+              <div>
+                <p>Every morning a scheduled agent scans HTCondor and posts a report to Slack: state summary, <strong>hold-reason breakdown</strong>, top users, jobs held &gt;7&nbsp;days, recommended actions.</p>
+                <div class="callout" style="margin-top:8px;">
+                  <p>Today: <strong>448 held of 14,671</strong> (3.1%) &mdash; below the 20% alert line. Holds auto-categorized: wall-time, output-transfer, OOM, &hellip;</p>
+                </div>
+                <p style="margin-top:10px; font-size:13.5pt;"><i class="fa-solid fa-terminal text-teal"></i>&nbsp; No HTCondor MCP &mdash; just our own skills around the <code>condor</code> CLI.</p>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="footnote">A dedicated HTCondor MCP exists (<a href="https://indico.cern.ch/event/1471803/contributions/6967102/">Bockelman, CHEP&nbsp;2026</a>); the ops fleet (Shannon/OpenClaw) &rarr; next talk, &ldquo;Towards Agentic Ops.&rdquo;</div>
-        <aside class="notes">
-          Some agents work even when you're not there. A scheduled agent scans HTCondor every morning, posts a cluster report — today 448 held of ~14,700, 3.1%, healthy — and the user-facing part: when YOUR jobs are held, it drafts you an email with the specific fix. Real example: an OOM hold, it read the actual numbers, 32,694 against a 32,768 limit, and said bump to 36,000 and write to /data.
-          Crucial: it does NOT send autonomously. Drafts go to Slack, a human approves, then it sends. We even hit a race condition where two agents both grabbed approvals — so we stood email-sending down until fixed. I'd rather be honest about that than pretend it's flawless.
-          Two notes. This uses no HTCondor MCP — just our own skills around the condor CLI; Brian Bockelman has a real HTCondor MCP if you want that route. And note WHY the advice is good: the same encoded-knowledge idea as the facility CLAUDE.md — a hold-reason taxonomy, known-bad nodes c111/c113, the /home-vs-/data tip.
-          The ops fleet behind this is the next talk's territory — I'll stop here.
-        </aside>
+          <div class="footnote">A dedicated HTCondor MCP exists (<a href="https://indico.cern.ch/event/1471803/contributions/6967102/">Bockelman, CHEP&nbsp;2026</a>); the ops fleet (Shannon/OpenClaw) &rarr; next talk, &ldquo;Towards Agentic Ops.&rdquo;</div>
+          <aside class="notes">
+            Some agents work even when you're not there. Every morning a scheduled agent scans HTCondor and posts this report to Slack — state summary, hold-reason breakdown, top users, jobs held over 7 days, recommended actions. Today: 448 held of ~14,700, 3.1%, healthy.
+            Note it auto-categorizes holds — wall-time, output-transfer, OOM — using encoded knowledge, and it uses NO HTCondor MCP, just our own skills around the condor CLI. Bockelman has a real HTCondor MCP if you want that route.
+          </aside>
+        </section>
+        <section id="slide-11b">
+          <p class="kicker">What you can use today &middot; agents on your behalf</p>
+          <h2>&hellip;then drafts your fix &mdash; <span class="accent">you approve</span></h2>
+          <div class="content">
+            <div style="display: grid; grid-template-columns: 0.92fr 1fr; gap: 26px; align-items:center;">
+              <div class="shot filled light" style="min-height:0;">
+                <img src="images/htcondor-email-slack.png" width="1578" height="1622" style="max-height:540px; width:auto;" alt="Drafted held-job email posted to Slack, approved by a human, then sent by the agent">
+              </div>
+              <div>
+                <p>When <em>your</em> jobs are stuck it drafts a specific fix &mdash; real OOM case: <em>used the actual observed memory vs the limit</em> &rarr; raise <code>request_memory</code>; write big outputs to <code>/data</code>.</p>
+                <div class="callout" style="margin-top:8px;">
+                  <p class="label"><i class="fa-solid fa-user-check"></i>&nbsp; Human-in-the-loop</p>
+                  <p>Drafted &rarr; a human replies <code>approve</code> in Slack &rarr; sent. <strong>Never autonomous</strong> (note the stand-down banner).</p>
+                </div>
+                <p class="text-muted" style="margin-top:10px; font-size:13pt;"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp; Good advice because it carries AF knowledge (hold-reason taxonomy, <code>c111/c113</code>, <code>/home</code>&hellip;) &mdash; same lesson as the facility <code>CLAUDE.md</code>.</p>
+              </div>
+            </div>
+          </div>
+          <aside class="notes">
+            The user-facing payoff: when your jobs are held, it drafts you an email with the specific fix — here, an OOM case where it read the actual observed memory against the limit and said raise request_memory and write to /data.
+            Crucial: it does NOT send autonomously. It drafts, a human replies "approve" in Slack, then it sends — see the stand-down banner up top. We even hit a race condition where two agents both grabbed approvals, so we stood email-sending down until fixed. I'd rather be honest than pretend it's flawless.
+            And why is the advice good? The same encoded-knowledge idea as the facility CLAUDE.md — a hold-reason taxonomy, known-bad nodes c111/c113, the /home-vs-/data tip. The ops fleet behind this is the next talk's territory.
+          </aside>
+        </section>
       </section>
 
       <section id="divider-2" class="section-divider" data-state="is-section-divider">
@@ -498,16 +522,16 @@ rucio-mcp.af.uchicago.edu
               <p><span class="tag">swappable</span></p>
             </div>
           </div>
-          <div class="callout" style="margin-top:14px;">
-            <p class="label"><i class="fa-solid fa-people-group"></i>&nbsp; Quick orientation &mdash; think of it as a sports team</p>
-            <p style="font-size:14pt;"><strong>Reasoning engine</strong> = coach &middot; <strong>Playbook</strong> = game plan &middot; <strong>Agents</strong> = athletes &middot; <strong>Services</strong> = equipment &middot; <strong>Gateway</strong> = stadium entrance</p>
-          </div>
-          <div style="display:grid; grid-template-columns: 1.4fr 1fr; gap:18px; margin-top:12px; align-items:center;">
-            <p class="text-muted" style="font-size:13pt; margin:0;"><i class="fa-solid fa-book"></i>&nbsp; We keep a shared <strong>glossary</strong> so the team&rsquo;s language stays consistent &mdash; and so we know how to talk to our own agents while building the tooling. <span class="text-maroon">(&ldquo;Elwood&rdquo; is our internal project name &mdash; nothing public yet.)</span></p>
-            <div class="shot" style="min-height:120px;">
-              <i class="fa-solid fa-palette"></i>
-              <p class="shot-label">IMAGE: the sports-team analogy</p>
-              <p class="shot-hint">coach &middot; playbook &middot; athletes &middot; equipment &middot; stadium</p>
+          <div style="display:grid; grid-template-columns: 1fr 1.15fr; gap:20px; margin-top:14px; align-items:center;">
+            <div>
+              <p class="text-maroon" style="font-weight:600; font-size:14pt; margin:0 0 4px;"><i class="fa-solid fa-people-group"></i>&nbsp; Quick orientation: think of it as a sports team</p>
+              <p class="text-muted" style="font-size:13pt; margin:0;">We keep a shared <strong>glossary</strong> so the team&rsquo;s language stays consistent &mdash; and so we know how to talk to our own agents while building the tooling. <span class="text-maroon">(&ldquo;Elwood&rdquo; is our internal project name &mdash; nothing public yet.)</span></p>
+            </div>
+            <div>
+              <div class="shot filled light" style="min-height:0;">
+                <img src="images/sports-team-alt-2.png" style="max-height:215px;" alt="Sports-team analogy: coach=reasoning engine, playbook=playbook, athletes=agents, equipment=services, stadium=gateway">
+              </div>
+              <p class="shot-hint" style="text-align:center; margin-top:4px;">Image: Google Gemini 3.1 Pro</p>
             </div>
           </div>
         </div>
@@ -549,6 +573,28 @@ rucio-mcp.af.uchicago.edu
           On the right, a different facility — say a US Higgs-factory effort — whose data_tool today is just "download or browse files off EOS or the web," batch is local or Slurm. Same reasoning engine, same high-level tool names. Only the playbook differs, and the biggest difference is how data_tool is wired.
           The key reuse point: the skills for each tool are facility-INDEPENDENT — written once, shared — so a new facility only writes a thin playbook, not the whole stack. That's the whole goal: stop every experiment and facility re-developing the same agentic tooling in parallel.
           And you've already met the ATLAS playbook in pieces — the CLAUDE.md, the marketplace plugins, the agent's memory file. It's just facility context as a versioned artifact.
+        </aside>
+      </section>
+
+      <section id="slide-16b">
+        <p class="kicker">The architecture &middot; where it&rsquo;s heading</p>
+        <h2>One conversation, the whole analysis</h2>
+        <div class="content">
+          <div style="display:grid; grid-template-columns: 0.62fr 1fr; gap:24px; align-items:center;">
+            <div>
+              <p>The target: the analyzer describes the <em>physics</em>; the agent runs the <em>loop</em> &mdash; find data, generate code, submit jobs, recover from errors, make histograms, fit &mdash; refining as it goes.</p>
+              <p class="text-muted" style="font-size:13pt;">Every box here is a tool we&rsquo;ve shown today. Stitching them into one supervised loop is the work ahead.</p>
+              <p class="text-muted" style="font-size:12.5pt; margin-top:8px;"><i class="fa-solid fa-circle-info"></i>&nbsp; &ldquo;Elwood&rdquo; is our internal project name &mdash; nothing public yet.</p>
+            </div>
+            <div class="shot filled light" style="min-height:0;">
+              <img src="images/elwood-concept.png" width="1536" height="1024" style="max-height:470px; width:auto;" alt="Elwood end-to-end: chat-driven analysis across AMI/Rucio, code generation, HTCondor, monitoring, error recovery, histograms, and statistics">
+            </div>
+          </div>
+        </div>
+        <aside class="notes">
+          To close the architecture section, here's where it's heading. An analyzer types a physics request — "analyze the ttbar cross-section in the 2022 open dataset with the recommended b-tagging working point" — and the agent runs the whole loop: dataset search through AMI and Rucio, code generation, job submission to HTCondor, monitoring, error recovery, histograms, statistical analysis — refining and re-running as needed.
+          Be honest about status: every box in this picture is a tool I've shown you today, working. What's still ahead is stitching them into one supervised end-to-end loop. That's the work, and it's why the architecture — high-level tools, reasoning engine, playbook — matters.
+          And again, Elwood is just our internal name for this; nothing public yet.
         </aside>
       </section>
 
