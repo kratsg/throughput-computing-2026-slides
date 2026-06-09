@@ -265,7 +265,7 @@ rucio list-file-replicas &lt;scope&gt;:&lt;name&gt; --protocol root</code></pre>
           <div style="display:grid; grid-template-columns: 1.2fr 1fr; gap:18px; margin-top:14px;">
             <div class="callout teal">
               <p class="label"><i class="fa-solid fa-box-open"></i>&nbsp; Plugins install in one line; the tools don&rsquo;t</p>
-              <p style="font-size:13pt;">The agent know-how adds instantly; the <em>tools</em> come via <strong>setupATLAS + pixi</strong>. No <code>/cvmfs</code>? <strong>pixi + conda-forge</strong> covers most; see <a href="https://github.com/hep-packaging-coordination/">HEP Packaging Coordination</a> &amp; <a href="https://matthewfeickert-talks.github.io/talk-chep-2026/">Feickert (CHEP&nbsp;2026)</a>.</p>
+              <p style="font-size:13pt;">The agent know-how adds instantly; the <em>tools</em> come via <strong>setupATLAS + pixi</strong>. No <code>/cvmfs</code>? <strong>pixi + conda-forge</strong> covers most &mdash; incl. <strong>ARM builds</strong> &amp; <strong>supply-chain security</strong> via <a href="https://github.com/hep-packaging-coordination/">HEP Packaging Coordination</a> (cf. <a href="https://matthewfeickert-talks.github.io/talk-chep-2026/">Feickert, CHEP&nbsp;2026</a>).</p>
             </div>
             <div class="callout">
               <p class="label"><i class="fa-solid fa-circle-question"></i>&nbsp; Open question</p>
@@ -738,13 +738,15 @@ rucio-mcp.af.uchicago.edu
             <div>
               <p>Swap the model and the harness freely. <strong>The facility context is what makes it useful here</strong>, and it ports to the next AF.</p>
               <h3 style="margin-top:8px;">A team effort at the UChicago AF</h3>
-              <ul>
-                <li><strong>Ilija Vukotic</strong> &mdash; OpenClaw/Shannon agents, ES MCP</li>
-                <li><strong>Fengping Hu</strong> &mdash; Kubernetes, Keycloak, Jupyter AI</li>
-                <li><strong>Rob Gardner</strong> &mdash; vision, marketplace, Genesis</li>
-                <li><strong>Judith Stephen</strong> &mdash; HTCondor expertise, runbooks</li>
-                <li><strong>Aidan Rosberg</strong> &mdash; RP1 vision (Infra-as-Config), core dev/maintainer</li>
-              </ul>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:5px 22px; margin-top:6px;">
+                <p style="margin:0; font-size:13.5pt;"><strong>Ilija Vukotic</strong> &mdash; OpenClaw/Shannon, ES MCP</p>
+                <p style="margin:0; font-size:13.5pt;"><strong>Fengping Hu</strong> &mdash; Kubernetes, Keycloak, Jupyter AI</p>
+                <p style="margin:0; font-size:13.5pt;"><strong>Rob Gardner</strong> &mdash; vision, marketplace, Genesis</p>
+                <p style="margin:0; font-size:13.5pt;"><strong>Judith Stephen</strong> &mdash; HTCondor expertise, runbooks</p>
+                <p style="margin:0; font-size:13.5pt;"><strong>Aidan Rosberg</strong> &mdash; RP1 (Infra-as-Config), core dev/maintainer</p>
+                <p style="margin:0; font-size:13.5pt;"><strong>David Jordan</strong> &mdash; AF networking, node ops</p>
+                <p style="margin:0; font-size:13.5pt;"><strong>Farnaz Golnaraghi</strong> &mdash; Ceph storage, Pile buildout</p>
+              </div>
               <p class="text-teal" style="font-size:13.5pt; margin-top:8px;"><i class="fa-solid fa-arrow-right"></i>&nbsp; <strong>What&rsquo;s next:</strong> port these lessons (incl. agentic AI) to the <a href="https://docs.google.com/presentation/d/1gfiWfIDVhJXvfAzkOckoOYsb0lkxwH9m/edit">Open Data Facility (ODF)</a> and RP1.</p>
             </div>
             <div class="callout teal">
@@ -762,7 +764,7 @@ rucio-mcp.af.uchicago.edu
         <div class="footnote">Giordon Stark &middot; kratsg &middot; USATLAS F2F @ HTC26 &middot; 2026&#8209;06&#8209;09. In the spirit of Gordon Watts&rsquo; CHEP&nbsp;2026 ecosystem framing.</div>
         <aside class="notes">
           To close: we turned a generic LLM into a facility-aware collaborator, and the thing that did it, context, is exactly the thing that ports to your facility next.
-          Genuinely a team effort: Ilija on the agent infrastructure and ES MCP, Fengping on Kubernetes, Keycloak, and Jupyter AI, Rob driving the vision, the marketplace, and the Genesis tie-in, Judith on HTCondor expertise and the runbooks, plus the wider AF team.
+          Genuinely a team effort: Ilija on the agent infrastructure and ES MCP, Fengping on Kubernetes, Keycloak, and Jupyter AI, Rob driving the vision, the marketplace, and the Genesis tie-in, Judith on HTCondor expertise and the runbooks, Aidan on RP1 and infrastructure-as-config, David on networking and node ops, Farnaz on Ceph storage and the Pile buildout, plus the wider AF team.
           Everything's installable today: add the marketplace in Claude Code, or npx skills add to cherry-pick skills; docs at af-docs/ai.
           And looking ahead: the plan is to translate everything we've learned building the AF, including this agentic AI work, into the Open Data Facility, the ODF, link on the slide.
           And now I'd really like the discussion. Back to those six questions.
