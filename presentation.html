@@ -241,7 +241,7 @@ rucio list-file-replicas &lt;scope&gt;:&lt;name&gt; --protocol root</code></pre>
 
       <section id="slide-7">
         <p class="kicker">What you can use today &middot; distribution</p>
-        <h2>The USATLAS marketplace &mdash; Gordon&rsquo;s &ldquo;pip-install&rdquo;</h2>
+        <h2>The USATLAS marketplace &mdash; installing the <span class="accent">know-how</span></h2>
         <div class="content">
           <pre><code class="block"><span class="cmd-prompt">&gt;</span> /plugins marketplace add usatlas/marketplace</code></pre>
           <p style="font-size:14pt; margin:6px 0 0;"><strong>Three plugins</strong> &mdash; each bundles skills, subagents &amp; hooks &mdash; at <a href="https://github.com/usatlas/marketplace">github.com/usatlas/marketplace</a>:</p>
@@ -262,14 +262,21 @@ rucio list-file-replicas &lt;scope&gt;:&lt;name&gt; --protocol root</code></pre>
               <p>Typer CLIs with pixi/uv/Hatch, PEP&#8209;723 standalone scripts, packaging, testing, code quality.</p>
             </div>
           </div>
-          <div class="callout" style="margin-top:16px;">
-            <p class="label"><i class="fa-solid fa-circle-question"></i>&nbsp; The recurring open question</p>
-            <p>Where should UChicago-AF knowledge live &mdash; in this <strong>shared marketplace</strong> (alongside other facilities) or <strong>shipped with the facility</strong> (Puppet)? Today it&rsquo;s in <em>both</em> &mdash; and duplication risks context bloat.</p>
+          <div style="display:grid; grid-template-columns: 1.2fr 1fr; gap:18px; margin-top:14px;">
+            <div class="callout teal">
+              <p class="label"><i class="fa-solid fa-box-open"></i>&nbsp; Plugins install in one line &mdash; the tools don&rsquo;t</p>
+              <p style="font-size:13pt;">The agent know-how adds instantly; the <em>tools</em> come via <strong>setupATLAS + pixi</strong>. No <code>/cvmfs</code>? <strong>pixi + conda-forge</strong> covers most &mdash; see <a href="https://github.com/hep-packaging-coordination/">HEP Packaging Coordination</a> &amp; <a href="https://matthewfeickert-talks.github.io/talk-chep-2026/">Feickert (CHEP&nbsp;2026)</a>.</p>
+            </div>
+            <div class="callout">
+              <p class="label"><i class="fa-solid fa-circle-question"></i>&nbsp; Open question</p>
+              <p style="font-size:13pt;">Where should AF knowledge live &mdash; shared <strong>marketplace</strong> or <strong>with the facility</strong> (Puppet)? Today: <em>both</em>.</p>
+            </div>
           </div>
         </div>
         <aside class="notes">
-          Context shouldn't be re-invented per user. I made this — the marketplace is a Claude Code plugin registry, usatlas/marketplace, that anyone adds in one line. Three plugins: analysis-facilities (per-site skills, including UChicago), atlas (the physics, 25+ skills), hep-python-tools (Python hygiene). This is Gordon's pip-install made real, and the unit of sharing across facilities.
-          But it raises the question from the last slide, sharper now: the facility-specific knowledge — UChicago's storage, scheduler etiquette — could live HERE in the shared marketplace, or shipped with the facility via Puppet. Right now it's in both, and that duplication is a real problem: it bloats context and the two can drift. I don't have the answer; it's a discussion seed.
+          Context shouldn't be re-invented per user. I made this — usatlas/marketplace is a plugin registry anyone adds in one line. Three plugins: analysis-facilities (per-site skills, including UChicago), atlas (the physics, 25+ skills), hep-python-tools (Python hygiene). It's the unit of sharing across facilities.
+          One honest caveat on the "pip-install" dream: the PLUGINS install in one line, but the actual TOOLS — ROOT, Athena, coffea, the whole zoo — don't pip-install cleanly. We rely on setupATLAS plus pixi; and crucially, without /cvmfs you can still get most of the stack via pixi and conda-forge. Big shoutout to the HEP Packaging Coordination effort and Matthew Feickert's CHEP talk — that's what makes this tractable off-grid.
+          And the recurring question: should facility-specific knowledge live here in the shared marketplace, or ship with the facility via Puppet? Today it's in both — duplication that bloats context and can drift. A discussion seed.
         </aside>
       </section>
 
