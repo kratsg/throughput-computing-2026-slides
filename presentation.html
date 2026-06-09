@@ -131,7 +131,7 @@
                 <div class="shot filled light">
                   <img src="images/watts-analysis-ecosystem.png" alt="Gordon Watts' Analysis Ecosystem boat diagram">
                 </div>
-                <p class="shot-hint" style="text-align:center; margin-top:4px;">From G. Watts&rsquo; CHEP&nbsp;2026 slides &middot; &copy; Gordon Watts + AI</p>
+                <p class="shot-hint" style="text-align:center; margin-top:4px;">G. Watts&rsquo; CHEP&nbsp;2026 slides &middot; &copy; Gordon Watts + AI</p>
               </div>
             </div>
           </div>
@@ -169,7 +169,7 @@
               </div>
               <div class="callout" style="margin-top:10px;">
                 <p class="label"><i class="fa-solid fa-circle-question"></i>&nbsp; Open question</p>
-                <p style="font-size:14pt;">Ship this <em>with the facility</em> (Puppet) or via the <em>marketplace</em>? We&rsquo;ll come back to it.</p>
+                <p style="font-size:14pt;">Ship this <em>with the facility</em> (Puppet) or via a centralized <em>marketplace</em>? We&rsquo;ll come back to it.</p>
               </div>
             </div>
             <div>
@@ -359,8 +359,8 @@ rucio-mcp.af.uchicago.edu
               <p>Not everyone wants a terminal. <strong>OpenWebUI</strong> is a browser chat at <a href="https://af.uchicago.edu/chat">af.uchicago.edu/chat</a>, backed by a facility knowledge base.</p>
               <ul>
                 <li>Zero install, just a URL</li>
-                <li>Answers grounded in AF docs &amp; capabilities</li>
-                <li>Same knowledge, friendlier door</li>
+                <li>Answers based on AF docs &amp; capabilities</li>
+                <li>Same knowledge, friendlier UI/UX</li>
               </ul>
               <div class="callout teal" style="margin-top:10px;">
                 <p class="label">Real exchange &middot; user <code>xju</code>, Feb&nbsp;2026</p>
@@ -655,7 +655,7 @@ rucio-mcp.af.uchicago.edu
                   <span class="flow-arrow" style="font-size:14pt;">&rarr;</span>
                   <p class="node fill" style="font-size:11pt; padding:6px 8px;">rucio-mcp<span class="sub" style="font-size:9.5pt;">/site/atlas&middot;escape&hellip;</span></p>
                 </div>
-                <p style="font-size:12pt;"><i class="fa-solid fa-check text-teal"></i>&nbsp; one deploy; add <code>rucio-atlas</code>, <code>rucio-escape</code> separately</p>
+                <p style="font-size:12pt;"><i class="fa-solid fa-check text-teal"></i>&nbsp; one deploy; add <code>rucio-atlas</code>, <code>rucio-escape</code> separately in your harness</p>
                 <p style="font-size:12pt;"><i class="fa-solid fa-triangle-exclamation text-maroon"></i>&nbsp; per-VO auth inside one process</p>
               </div>
               <div class="card teal">
@@ -719,7 +719,7 @@ rucio-mcp.af.uchicago.edu
             <p class="text-center" style="margin-top:12px; font-size:15pt;"><strong>My bet:</strong> the model and harness are the easy part. <span class="text-maroon"><strong>Context, identity, and trust</strong></span> are the facility&rsquo;s homework.</p>
             <div class="callout teal" style="margin-top:12px;">
               <p class="label"><i class="fa-solid fa-cube"></i>&nbsp; What&rsquo;s <a href="https://github.com/containers/bubblewrap">bubblewrap</a>?</p>
-              <p style="font-size:12.5pt;">The sandboxing tech behind Flatpak: it isolates a process from the rest of the Linux system, with no access to your files, network, or hardware unless you explicitly grant it. A lightweight way to fence in an <strong>agent&rsquo;s tool execution</strong> on facilities without Kubernetes.</p>
+              <p style="font-size:12.5pt;">The sandboxing tech behind <a href="https://flatpak.org/">Flatpak</a>: it isolates a process from the rest of the Linux system, with no access to your files, network, or hardware unless you explicitly grant it. A lightweight way to fence in an <strong>agent&rsquo;s tool execution</strong> on facilities without Kubernetes.</p>
             </div>
           </div>
           <aside class="notes">
@@ -743,14 +743,14 @@ rucio-mcp.af.uchicago.edu
                 <li><strong>Fengping Hu</strong> &mdash; Kubernetes, Keycloak, Jupyter AI</li>
                 <li><strong>Rob Gardner</strong> &mdash; vision, marketplace, Genesis</li>
                 <li><strong>Judith Stephen</strong> &mdash; HTCondor expertise, runbooks</li>
+                <li><strong>Aidan Rosberg</strong> &mdash; RP1 vision (Infra-as-Config), core dev/maintainer</li>
               </ul>
-              <p class="text-teal" style="font-size:13.5pt; margin-top:8px;"><i class="fa-solid fa-arrow-right"></i>&nbsp; <strong>What&rsquo;s next:</strong> port these lessons (incl. agentic AI) to the <a href="https://docs.google.com/presentation/d/1gfiWfIDVhJXvfAzkOckoOYsb0lkxwH9m/edit">Open Data Facility (ODF)</a>.</p>
+              <p class="text-teal" style="font-size:13.5pt; margin-top:8px;"><i class="fa-solid fa-arrow-right"></i>&nbsp; <strong>What&rsquo;s next:</strong> port these lessons (incl. agentic AI) to the <a href="https://docs.google.com/presentation/d/1gfiWfIDVhJXvfAzkOckoOYsb0lkxwH9m/edit">Open Data Facility (ODF)</a> and RP1.</p>
             </div>
             <div class="callout teal">
               <p class="label">Try it / read more</p>
               <ul style="margin:2px 0;">
-                <li><code>/plugins marketplace add usatlas/marketplace</code></li>
-                <li><code>npx skills add usatlas/marketplace</code> (pick skills)</li>
+                <li><code>/plugins marketplace add</code> or <code>npx skills add usatlas/marketplace</code></li>
                 <li>Docs: <a href="https://usatlas.github.io/af-docs/ai">usatlas.github.io/af-docs/ai</a></li>
                 <li><a href="https://github.com/usatlas/marketplace">github.com/usatlas/marketplace</a> &middot; <code>rucio-mcp</code> &middot; <code>ami-mcp</code> &middot; <code>stare</code></li>
                 <li>Shannon/Elwood/OpenClaw <a href="https://docs.google.com/presentation/d/1Mw2nQjBVHAC75F7zG-z1Q1dEWT903ufpGoO4OHSIt9Y/edit">framing (R&amp;D meeting)</a></li>
