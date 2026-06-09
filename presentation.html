@@ -454,15 +454,17 @@ rucio-mcp.af.uchicago.edu
           </div>
           <p class="text-center text-maroon" style="font-size:22pt; margin:10px;"><i class="fa-solid fa-arrows-down-to-line"></i></p>
           <div class="node teal" style="font-size:17pt; padding:14px;">An assistant that&rsquo;s actually useful <em>here</em><span class="sub">routes ntuples to <code>/data</code>, not <code>/home</code></span></div>
-          <div class="callout" style="margin-top:20px;">
+          <div class="callout" style="margin-top:18px;">
             <p style="font-size:16pt;">The first two blocks are <strong>interchangeable</strong> &mdash; pick any model (or self-host to cut cost), any harness. Every win today came from the <strong>third</strong>: the managed <code>CLAUDE.md</code>, the marketplace plugins, the Rucio/AMI MCPs, the condor bot&rsquo;s <code>HTCondor.md</code>.</p>
           </div>
+          <p class="text-center text-muted" style="margin-top:12px; font-size:14pt;"><i class="fa-solid fa-bullseye"></i>&nbsp; Pragmatically too: model &amp; harness evolve <em>fast</em> &mdash; we can&rsquo;t run a cluster <em>and</em> chase that. Facility context is the <strong>tractable</strong> scope.</p>
         </div>
         <div class="footnote">Self-hosting option for open-weight models: <a href="https://nrp.ai/llms/">NRP-hosted LLMs</a> (nrp.ai/llms).</div>
         <aside class="notes">
           If you take one slide home, this one — and I'm dropping the buzzwords to be concrete. Three ingredients. The model — Opus, GPT-5, or a locally-hosted open-weight model, which matters for cost at HL-LHC scale. The harness — Claude Code, Codex, Copilot. Both of those you can swap freely; they're not where our work is.
           The third block is the facility context and ATLAS tools, and THAT is where every win in section one came from: the CLAUDE.md, the marketplace, the MCPs, the agent's memory file.
           So: models keep improving on their own, harnesses are a preference, and you can self-host to control cost. Our job — the facility's job — is the context. That's why this is a facility conversation, not just a vendor one.
+          There's also a pragmatic reason to draw the line here: the model and harness layer moves incredibly fast, and we genuinely cannot both operate a cluster and stay on top of that churn. Narrowing our scope to facility context and tools keeps this a tractable problem — we own the part that's stable and actually ours.
         </aside>
       </section>
 
