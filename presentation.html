@@ -66,8 +66,8 @@
           </div>
         </div>
         <aside class="notes">
-          This one example is the entire talk, and it's AF-specific on purpose. An analyzer runs TopCPToolkit: large output ntuples, small histograms. Ask a generic model where to write them and it'll say "next to your job" — your home directory — which is only 100 GB. The big ntuples blow that quota almost immediately.
-          An AF-aware agent routes the big ntuples to /data (5 TB) and keeps the small histograms in /home. Same model — it just knows the quotas and layout.
+          This one example is the entire talk, and it's AF-specific on purpose. An analyzer runs TopCPToolkit: large output ntuples, small histograms. Ask a generic model where to write them and it'll say "next to your job", your home directory, which is only 100 GB. The big ntuples blow that quota almost immediately.
+          An AF-aware agent routes the big ntuples to /data (5 TB) and keeps the small histograms in /home. Same model, it just knows the quotas and layout.
           Everything else today is variations on "wrap facility knowledge and tools behind the agent."
         </aside>
       </section>
@@ -108,8 +108,8 @@
             </div>
           </div>
           <aside class="notes">
-            Fast, because this room is mixed. Agent = the brain: the model deciding which tool to call next. Harness = the hands: the app that actually runs those commands, touches files, wires up MCPs, enforces permissions — Claude Code, Codex. MCP = the USB-C port exposing a service as tools and resources. Skill = instructions on demand.
-            Don't dwell — these are just the nouns for the rest of the talk.
+            Fast, because this room is mixed. Agent = the brain: the model deciding which tool to call next. Harness = the hands: the app that actually runs those commands, touches files, wires up MCPs, enforces permissions, Claude Code, Codex. MCP = the USB-C port exposing a service as tools and resources. Skill = instructions on demand.
+            Don't dwell, these are just the nouns for the rest of the talk.
           </aside>
         </section>
         <section id="slide-3-2">
@@ -137,8 +137,8 @@
           </div>
           <div class="footnote">Watts, CHEP&nbsp;2026: <a href="https://indico.cern.ch/event/1471803/contributions/6969164/">indico.cern.ch/event/1471803/contributions/6969164</a></div>
           <aside class="notes">
-            Credit where due: Gordon Watts gave this community the framing at CHEP — the win isn't a smarter model, it's the infrastructure around it: MCP, skills, agents, grounding, and a way to pip-install it all. That's his slide 25, the "Analysis Ecosystem" boat — everything has to sail together.
-            I'm not repeating that. I'm showing one facility's concrete instance, arguing the single most decisive layer is facility context, and showing why it ports. This isn't "my ecosystem" — it's our AF built in that spirit.
+            Credit where due: Gordon Watts gave this community the framing at CHEP, the win isn't a smarter model, it's the infrastructure around it: MCP, skills, agents, grounding, and a way to pip-install it all. That's his slide 25, the "Analysis Ecosystem" boat, everything has to sail together.
+            I'm not repeating that. I'm showing one facility's concrete instance, arguing the single most decisive layer is facility context, and showing why it ports. This isn't "my ecosystem", it's our AF built in that spirit.
           </aside>
         </section>
       </section>
@@ -191,8 +191,8 @@
         </div>
         <div class="footnote">Shipped system-wide by our config management (Puppet) to <code>login01&ndash;04</code> &middot; live since 2026&#8209;05&#8209;19. Excerpt; allow-list trimmed.</div>
         <aside class="notes">
-          Important correction to a common assumption: we do NOT install the agent for you. Users bring their own harness — Claude Code today, maybe Codex tomorrow. What the FACILITY ships, via Puppet system-wide, is the managed settings: an allow-list of safe HEP commands so the agent isn't constantly asking permission, and an env block so it boots into the ATLAS environment. Any harness that respects managed-settings.d inherits these.
-          The point isn't the JSON — it's that the facility sets the guardrails centrally, decoupled from whichever agent you run.
+          Important correction to a common assumption: we do NOT install the agent for you. Users bring their own harness, Claude Code today, maybe Codex tomorrow. What the FACILITY ships, via Puppet system-wide, is the managed settings: an allow-list of safe HEP commands so the agent isn't constantly asking permission, and an env block so it boots into the ATLAS environment. Any harness that respects managed-settings.d inherits these.
+          The point isn't the JSON, it's that the facility sets the guardrails centrally, decoupled from whichever agent you run.
           And here's the first instance of a question I'll keep raising: should this knowledge ship WITH the facility like this, or live in the shared marketplace? Hold that thought.
         </aside>
       </section>
@@ -234,7 +234,7 @@ rucio list-file-replicas &lt;scope&gt;:&lt;name&gt; --protocol root</code></pre>
         </div>
         <aside class="notes">
           This is the slide. Every Claude Code session on the AF silently loads this facility CLAUDE.md alongside the user's own.
-          It's nothing exotic — a storage table, scheduler etiquette, data-access recipes. But it's exactly the stuff a generic model cannot know and will confidently get wrong: that /home is backed up but only 100 GB, that /scratch is node-local and evaporates, that we have XCache.
+          It's nothing exotic, a storage table, scheduler etiquette, data-access recipes. But it's exactly the stuff a generic model cannot know and will confidently get wrong: that /home is backed up but only 100 GB, that /scratch is node-local and evaporates, that we have XCache.
           Write the facility down once, every analyzer's agent inherits it. That's the cheapest, highest-leverage thing we did. Everything else is plumbing to deliver context like this.
         </aside>
       </section>
@@ -274,9 +274,9 @@ rucio list-file-replicas &lt;scope&gt;:&lt;name&gt; --protocol root</code></pre>
           </div>
         </div>
         <aside class="notes">
-          Context shouldn't be re-invented per user. I made this — usatlas/marketplace is a plugin registry anyone adds in one line. Three plugins: analysis-facilities (per-site skills, including UChicago), atlas (the physics, 25+ skills), hep-python-tools (Python hygiene). It's the unit of sharing across facilities.
-          One honest caveat on the "pip-install" dream: the PLUGINS install in one line, but the actual TOOLS — ROOT, Athena, coffea, the whole zoo — don't pip-install cleanly. We rely on setupATLAS plus pixi; and crucially, without /cvmfs you can still get most of the stack via pixi and conda-forge. Big shoutout to the HEP Packaging Coordination effort and Matthew Feickert's CHEP talk — that's what makes this tractable off-grid.
-          And the recurring question: should facility-specific knowledge live here in the shared marketplace, or ship with the facility via Puppet? Today it's in both — duplication that bloats context and can drift. A discussion seed.
+          Context shouldn't be re-invented per user. I made this, usatlas/marketplace is a plugin registry anyone adds in one line. Three plugins: analysis-facilities (per-site skills, including UChicago), atlas (the physics, 25+ skills), hep-python-tools (Python hygiene). It's the unit of sharing across facilities.
+          One honest caveat on the "pip-install" dream: the PLUGINS install in one line, but the actual TOOLS (ROOT, Athena, coffea, the whole zoo) don't pip-install cleanly. We rely on setupATLAS plus pixi; and crucially, without /cvmfs you can still get most of the stack via pixi and conda-forge. Big shoutout to the HEP Packaging Coordination effort and Matthew Feickert's CHEP talk. That's what makes this tractable off-grid.
+          And the recurring question: should facility-specific knowledge live here in the shared marketplace, or ship with the facility via Puppet? Today it's in both, duplication that bloats context and can drift. A discussion seed.
         </aside>
       </section>
 
@@ -316,9 +316,9 @@ rucio-mcp.af.uchicago.edu
         </div>
         <div class="footnote">Auth reuses grid creds (x509) or Keycloak OIDC &middot; <a href="https://github.com/kratsg/rucio-mcp/blob/main/docs/rucio-oauth-bridge.md">OAuth bridge docs</a> &middot; <em>running</em> workflows/jobs is <a href="https://panda-wms.readthedocs.io/en/latest/advanced/mcp.html">panda-mcp</a> / <a href="https://indico.cern.ch/event/1471803/contributions/6967102/">condor-mcp</a>&rsquo;s job (not yet at AF).</div>
         <aside class="notes">
-          Two clarifications on my earlier framing. First, the scope: rucio is dataset ACCESS — find, inspect, replicas, download. "Talk to the grid / run my workflow" is actually panda-mcp's job, Brian Bockelman's space — we don't have it at the AF yet but will document it once confirmed.
-          Second, two ways to run these. Locally with your x509 proxy — pixi exec, one line, read-only by default because rucio-mcp has 50+ tools and you don't want an agent deleting replication rules. OR the hosted server at rucio-mcp.af.uchicago.edu, one HTTP endpoint serving four experiments, with a browser OIDC login.
-          Be honest about the rough edges, because they're real open questions: even with OIDC the token UX varies by VO — lifetimes and refresh/offline-access differ, and the audiences differ, so atlas and dune use no custom issuer while cms and escape need a custom-issuer token-exchange. And we haven't settled how to handle a hung request — socket timeout on the MCP side, or have the LLM close and retry? How do we enforce that across all LLM clients? On the plus side, rucio-mcp exports Prometheus metrics so we can actually watch LLM usage per-site and per-tool — there's a public Grafana. Workflow/job execution itself is panda-mcp or condor-mcp territory, not here.
+          Two clarifications on my earlier framing. First, the scope: rucio is dataset ACCESS: find, inspect, replicas, download. "Talk to the grid / run my workflow" is actually panda-mcp's job, Brian Bockelman's space. We don't have it at the AF yet but will document it once confirmed.
+          Second, two ways to run these. Locally with your x509 proxy, pixi exec, one line, read-only by default because rucio-mcp has 50+ tools and you don't want an agent deleting replication rules. OR the hosted server at rucio-mcp.af.uchicago.edu, one HTTP endpoint serving four experiments, with a browser OIDC login.
+          Be honest about the rough edges, because they're real open questions: even with OIDC the token UX varies by VO, lifetimes and refresh/offline-access differ, and the audiences differ, so atlas and dune use no custom issuer while cms and escape need a custom-issuer token-exchange. And we haven't settled how to handle a hung request: socket timeout on the MCP side, or have the LLM close and retry? How do we enforce that across all LLM clients? On the plus side, rucio-mcp exports Prometheus metrics so we can actually watch LLM usage per-site and per-tool. There's a public Grafana. Workflow/job execution itself is panda-mcp or condor-mcp territory, not here.
         </aside>
       </section>
 
@@ -344,9 +344,9 @@ rucio-mcp.af.uchicago.edu
         </div>
         <div class="footnote"><a href="https://jupyter-mcp-server.datalayer.tech/providers/jupyter-streamable-http-extension/">Jupyter MCP streamable-HTTP extension</a> &middot; full-size demo video: <a href="https://drive.google.com/file/d/1H5k_-l_fpzj4PRB7e_rlh_jY6SGyDPEM/view">Google&nbsp;Drive</a>.</div>
         <aside class="notes">
-          My favorite demo. The Jupyter MCP runs inside your JupyterLab pod, so the chat happens in ANY agent that reaches the endpoint — I've driven a live AF notebook from my phone. Kick off a long cell from your laptop, check it from your phone on the bus.
-          Distinguish this from Jupyter AI, which puts the agent INSIDE the notebook server. That's a different bet, and honestly it may lose out — a lot of our users prefer the VS Code workflow over JupyterLab.
-          The honest caveat: server pods have finite lifetimes for fair sharing, so when yours respawns you re-mint the URL and bearer token. It's a security/convenience tradeoff. One idea I'm weighing: a Keycloak-OIDC reverse-proxy so you keep a single token and just pick which server it routes to in the browser — the cost being you can only drive one server at a time.
+          My favorite demo. The Jupyter MCP runs inside your JupyterLab pod, so the chat happens in ANY agent that reaches the endpoint, I've driven a live AF notebook from my phone. Kick off a long cell from your laptop, check it from your phone on the bus.
+          Distinguish this from Jupyter AI, which puts the agent INSIDE the notebook server. That's a different bet, and honestly it may lose out, a lot of our users prefer the VS Code workflow over JupyterLab.
+          The honest caveat: server pods have finite lifetimes for fair sharing, so when yours respawns you re-mint the URL and bearer token. It's a security/convenience tradeoff. One idea I'm weighing: a Keycloak-OIDC reverse-proxy so you keep a single token and just pick which server it routes to in the browser, the cost being you can only drive one server at a time.
         </aside>
       </section>
 
@@ -379,8 +379,8 @@ rucio-mcp.af.uchicago.edu
         </div>
         <div class="footnote">Assistant built by Ilija Vukotic (<a href="https://docs.google.com/presentation/d/1Pz7FSHPGWGXi_KYDtBIX56HGgJZd1g57DXhtnqXX0rY/edit">slides</a>) &middot; it also pointed <code>xju</code> to xAOD/coffea examples &middot; Triton&rarr;athena: <a href="https://indico.cern.ch/event/1471803/contributions/6967260/">Vakho Tsulaia, CHEP&nbsp;2026</a>.</div>
         <aside class="notes">
-          Not everyone lives in a terminal. OpenWebUI is a plain browser chat we host, backed by an AF knowledge base — zero install, just a URL.
-          This is a real exchange from during my February talk: user xju asked whether Triton models are available, and it correctly described the deployment — k8s, CVMFS plus an S3 model repo at s3://triton-models/username, upload yours then ask admins to enable it. He then asked about analysis code examples and it correctly pointed him to our xAOD, coffea, and AnalysisBase tutorials. My reaction at the time: "this is not awful and it is correct." Faint praise, but the point stands — facility-specific knowledge a stock chatbot doesn't have.
+          Not everyone lives in a terminal. OpenWebUI is a plain browser chat we host, backed by an AF knowledge base, zero install, just a URL.
+          This is a real exchange from during my February talk: user xju asked whether Triton models are available, and it correctly described the deployment, k8s, CVMFS plus an S3 model repo at s3://triton-models/username, upload yours then ask admins to enable it. He then asked about analysis code examples and it correctly pointed him to our xAOD, coffea, and AnalysisBase tutorials. My reaction at the time: "this is not awful and it is correct." Faint praise, but the point stands, facility-specific knowledge a stock chatbot doesn't have.
           For the actual Triton-into-athena mechanics, Vakho's talk is the reference.
         </aside>
       </section>
@@ -405,8 +405,8 @@ rucio-mcp.af.uchicago.edu
           </div>
           <div class="footnote">A dedicated HTCondor MCP exists (<a href="https://indico.cern.ch/event/1471803/contributions/6967102/">Bockelman, CHEP&nbsp;2026</a>); the ops fleet (Shannon/OpenClaw) &rarr; next talk, &ldquo;Towards Agentic Ops.&rdquo;</div>
           <aside class="notes">
-            Some agents work even when you're not there. Every morning a scheduled agent scans HTCondor and posts this report to Slack — state summary, hold-reason breakdown, top users, jobs held over 7 days, recommended actions. Today: 448 held of ~14,700, 3.1%, healthy.
-            Note it auto-categorizes holds — wall-time, output-transfer, OOM — using encoded knowledge, and it uses NO HTCondor MCP, just our own skills around the condor CLI. Bockelman has a real HTCondor MCP if you want that route.
+            Some agents work even when you're not there. Every morning a scheduled agent scans HTCondor and posts this report to Slack, state summary, hold-reason breakdown, top users, jobs held over 7 days, recommended actions. Today: 448 held of ~14,700, 3.1%, healthy.
+            Note it auto-categorizes holds, wall-time, output-transfer, OOM, using encoded knowledge, and it uses NO HTCondor MCP, just our own skills around the condor CLI. Bockelman has a real HTCondor MCP if you want that route.
           </aside>
         </section>
         <section id="slide-11b">
@@ -432,9 +432,9 @@ rucio-mcp.af.uchicago.edu
             </div>
           </div>
           <aside class="notes">
-            The user-facing payoff: when your jobs are held, it drafts you an email with the specific fix — here, an OOM case where it read the actual observed memory against the limit and said raise request_memory and write to /data.
-            Crucial: it does NOT send autonomously. It drafts, a human replies "approve" in Slack, then it sends — see the stand-down banner up top. We even hit a race condition where two agents both grabbed approvals, so we stood email-sending down until fixed. I'd rather be honest than pretend it's flawless.
-            And why is the advice good? The same encoded-knowledge idea as the facility CLAUDE.md — a hold-reason taxonomy, known-bad nodes c111/c113, the /home-vs-/data tip. The ops fleet behind this is the next talk's territory.
+            The user-facing payoff: when your jobs are held, it drafts you an email with the specific fix, here, an OOM case where it read the actual observed memory against the limit and said raise request_memory and write to /data.
+            Crucial: it does NOT send autonomously. It drafts, a human replies "approve" in Slack, then it sends, see the stand-down banner up top. We even hit a race condition where two agents both grabbed approvals, so we stood email-sending down until fixed. I'd rather be honest than pretend it's flawless.
+            And why is the advice good? The same encoded-knowledge idea as the facility CLAUDE.md, a hold-reason taxonomy, known-bad nodes c111/c113, the /home-vs-/data tip. The ops fleet behind this is the next talk's territory.
           </aside>
         </section>
       </section>
@@ -444,7 +444,7 @@ rucio-mcp.af.uchicago.edu
         <p class="kicker">The architecture</p>
         <h1>Why it works</h1>
         <aside class="notes">
-          We've seen the what. Now the why — the three architectural ideas that make all of that hang together and, critically, make it portable.
+          We've seen the what. Now the why, the three architectural ideas that make all of that hang together and, critically, make it portable.
         </aside>
       </section>
 
@@ -467,10 +467,10 @@ rucio-mcp.af.uchicago.edu
         </div>
         <div class="footnote">Self-hosting option for open-weight models: <a href="https://nrp.ai/llms/">NRP-hosted LLMs</a> (nrp.ai/llms).</div>
         <aside class="notes">
-          If you take one slide home, this one — and I'm dropping the buzzwords to be concrete. Three ingredients. The model — Opus, GPT-5, or a locally-hosted open-weight model, which matters for cost at HL-LHC scale. The harness — Claude Code, Codex, Copilot. Both of those you can swap freely; they're not where our work is.
+          If you take one slide home, this one. And I'm dropping the buzzwords to be concrete. Three ingredients. The model: Opus, GPT-5, or a locally-hosted open-weight model, which matters for cost at HL-LHC scale. The harness: Claude Code, Codex, Copilot. Both of those you can swap freely; they're not where our work is.
           The third block is the facility context and ATLAS tools, and THAT is where every win in section one came from: the CLAUDE.md, the marketplace, the MCPs, the agent's memory file.
-          So: models keep improving on their own, harnesses are a preference, and you can self-host to control cost. Our job — the facility's job — is the context. That's why this is a facility conversation, not just a vendor one.
-          There's also a pragmatic reason to draw the line here: the model and harness layer moves incredibly fast, and we genuinely cannot both operate a cluster and stay on top of that churn. Narrowing our scope to facility context and tools keeps this a tractable problem — we own the part that's stable and actually ours.
+          So: models keep improving on their own, harnesses are a preference, and you can self-host to control cost. Our job, the facility's job, is the context. That's why this is a facility conversation, not just a vendor one.
+          There's also a pragmatic reason to draw the line here: the model and harness layer moves incredibly fast, and we genuinely cannot both operate a cluster and stay on top of that churn. Narrowing our scope to facility context and tools keeps this a tractable problem. We own the part that's stable and actually ours.
         </aside>
       </section>
 
@@ -497,9 +497,9 @@ rucio-mcp.af.uchicago.edu
           </div>
         </div>
         <aside class="notes">
-          The flip side of the thesis, and it's a real scrape. Early on, our cluster-monitoring agents recommended Lustre and MDS tuning for a problem on a filesystem that's actually Ceph. They had no Ceph context, so they pattern-matched to the storage they DID know — confident, fluent, and wrong.
-          The team's reaction matters. Judith: if we're going to rely on these, they have to be accurate or they can't be trusted. Farnaz: if it has no Ceph context, it shouldn't be making recommendations or pinging people — we'll just chase irrelevant noise. Ilija's point: those agents had literally zero Ceph instructions.
-          So the rule we adopted: no grounded context, stay quiet. This is the same thesis from the other side — context isn't only what makes the agent useful, it's what makes it safe to trust. And it's exactly why "where does the knowledge live and who keeps it true" is a real question, not bookkeeping.
+          The flip side of the thesis, and it's a real scrape. Early on, our cluster-monitoring agents recommended Lustre and MDS tuning for a problem on a filesystem that's actually Ceph. They had no Ceph context, so they pattern-matched to the storage they DID know, confident, fluent, and wrong.
+          The team's reaction matters. Judith: if we're going to rely on these, they have to be accurate or they can't be trusted. Farnaz: if it has no Ceph context, it shouldn't be making recommendations or pinging people, we'll just chase irrelevant noise. Ilija's point: those agents had literally zero Ceph instructions.
+          So the rule we adopted: no grounded context, stay quiet. This is the same thesis from the other side, context isn't only what makes the agent useful, it's what makes it safe to trust. And it's exactly why "where does the knowledge live and who keeps it true" is a real question, not bookkeeping.
         </aside>
       </section>
       </section>
@@ -529,9 +529,9 @@ rucio-mcp.af.uchicago.edu
           </div>
         </div>
         <aside class="notes">
-          Second idea. Don't make the agent learn your backends. Give it intent-level tools: a (meta)data_tool to fetch datasets and their metadata (cross-sections), transform_tool, batch_tool, inference_tool. The agent says "get me this dataset and its cross-section" or "histogram these DAODs" — it never says rucio or coffea or condor.
+          Second idea. Don't make the agent learn your backends. Give it intent-level tools: a (meta)data_tool to fetch datasets and their metadata (cross-sections), transform_tool, batch_tool, inference_tool. The agent says "get me this dataset and its cross-section" or "histogram these DAODs", it never says rucio or coffea or condor.
           Underneath, the facility wires whatever it runs: rucio-mcp/ami-mcp for data; coffea, FastFrames, ServiceX, Athena for transforms; HTCondor, Dask, PanDA, REANA for batch; pyhf or TRExFitter for inference. Different facility, different backends, same high-level tools.
-          This indirection is precisely what lets the same agent move between facilities — the structural basis for the portability claim.
+          This indirection is precisely what lets the same agent move between facilities, the structural basis for the portability claim.
         </aside>
       </section>
 
@@ -565,8 +565,8 @@ rucio-mcp.af.uchicago.edu
           </div>
         </div>
         <aside class="notes">
-          Third idea, and let me fix my own vocabulary — we've moved past "codec/codebook" to clearer terms. The reasoning engine is the framework: orchestration, routing, guardrails — written once, agnostic to model and experiment. The playbook is all the context: which tools, the system prompt, the knowledge, the examples.
-          Quick orientation, because the ontology has more pieces: think of our system — internally we call it Elwood, nothing public yet — like a sports team. The reasoning engine is the coach, the playbook is the game plan, agents are the athletes, services are equipment kits, the gateway is the stadium entrance. We keep a written glossary so the whole team uses the same words — which matters a lot when you're instructing agents to help build the infrastructure.
+          Third idea, and let me fix my own vocabulary, we've moved past "codec/codebook" to clearer terms. The reasoning engine is the framework: orchestration, routing, guardrails, written once, agnostic to model and experiment. The playbook is all the context: which tools, the system prompt, the knowledge, the examples.
+          Quick orientation, because the ontology has more pieces: think of our system, internally we call it Elwood, nothing public yet, like a sports team. The reasoning engine is the coach, the playbook is the game plan, agents are the athletes, services are equipment kits, the gateway is the stadium entrance. We keep a written glossary so the whole team uses the same words, which matters a lot when you're instructing agents to help build the infrastructure.
           Next slide: what swapping the playbook actually looks like.
         </aside>
       </section>
@@ -600,10 +600,10 @@ rucio-mcp.af.uchicago.edu
         <div class="footnote"><i class="fa-solid fa-circle-question"></i>&nbsp; Still open: how to <em>link</em> &amp; reuse others&rsquo; skills without copying them in: <a href="https://github.com/usatlas/marketplace/issues/60">usatlas/marketplace#60</a> (options exist; no best practice yet).</div>
         <aside class="notes">
           Concretely, here's a playbook swap. On the left, ATLAS at UChicago: data_tool delegates to rucio-mcp because we're on the grid; transforms via coffea or FastFrames; batch via HTCondor; inference via pyhf or TRExFitter.
-          On the right, a different facility — say a US Higgs-factory effort — whose data_tool today is just "download or browse files off EOS or the web," batch is local or Slurm. Same reasoning engine, same high-level tool names. Only the playbook differs, and the biggest difference is how data_tool is wired.
-          The key reuse point: the skills for each tool are facility-INDEPENDENT — written once, shared — so a new facility only writes a thin playbook, not the whole stack. That's the whole goal: stop every experiment and facility re-developing the same agentic tooling in parallel.
-          And you've already met the ATLAS playbook in pieces — the CLAUDE.md, the marketplace plugins, the agent's memory file. It's just facility context as a versioned artifact.
-          One honest caveat on "reuse": HOW you reuse someone else's skill without just copying it into your repo is genuinely unsolved — there's an open issue on the marketplace, #60, with a few options and no agreed best practice yet. That's part of the same modularity conversation.
+          On the right, a different facility, say a US Higgs-factory effort, whose data_tool today is just "download or browse files off EOS or the web," batch is local or Slurm. Same reasoning engine, same high-level tool names. Only the playbook differs, and the biggest difference is how data_tool is wired.
+          The key reuse point: the skills for each tool are facility-INDEPENDENT, written once, shared, so a new facility only writes a thin playbook, not the whole stack. That's the whole goal: stop every experiment and facility re-developing the same agentic tooling in parallel.
+          And you've already met the ATLAS playbook in pieces: the CLAUDE.md, the marketplace plugins, the agent's memory file. It's just facility context as a versioned artifact.
+          One honest caveat on "reuse": HOW you reuse someone else's skill without just copying it into your repo is genuinely unsolved. There's an open issue on the marketplace, #60, with a few options and no agreed best practice yet. That's part of the same modularity conversation.
         </aside>
       </section>
 
@@ -623,8 +623,8 @@ rucio-mcp.af.uchicago.edu
           </div>
         </div>
         <aside class="notes">
-          To close the architecture section, here's where it's heading. An analyzer types a physics request — "analyze the ttbar cross-section in the 2022 open dataset with the recommended b-tagging working point" — and the agent runs the whole loop: dataset search through AMI and Rucio, code generation, job submission to HTCondor, monitoring, error recovery, histograms, statistical analysis — refining and re-running as needed.
-          Be honest about status: every box in this picture is a tool I've shown you today, working. What's still ahead is stitching them into one supervised end-to-end loop. That's the work, and it's why the architecture — high-level tools, reasoning engine, playbook — matters.
+          To close the architecture section, here's where it's heading. An analyzer types a physics request, "analyze the ttbar cross-section in the 2022 open dataset with the recommended b-tagging working point", and the agent runs the whole loop: dataset search through AMI and Rucio, code generation, job submission to HTCondor, monitoring, error recovery, histograms, statistical analysis, refining and re-running as needed.
+          Be honest about status: every box in this picture is a tool I've shown you today, working. What's still ahead is stitching them into one supervised end-to-end loop. That's the work, and it's why the architecture, high-level tools, reasoning engine, playbook, matters.
           And again, Elwood is just our internal name for this; nothing public yet.
         </aside>
       </section>
@@ -680,9 +680,9 @@ rucio-mcp.af.uchicago.edu
           </div>
           <div class="footnote">Same agent, same tools across sites; only the per-site auth/playbook differs. Granularity vs identity is a genuine open trade-off &rarr; discuss.</div>
           <aside class="notes">
-            This is deployed, not a slide: one hosted rucio-mcp at rucio-mcp.af.uchicago.edu serves four experiments, path-routed — /site/atlas, escape, cms, dune. But HOW you carve up MCPs is a real design choice, so here are three topologies with their caveats.
-            We run one server, many sites: a single deploy, and an analyzer adds rucio-atlas and rucio-escape as separate entries — but all the per-VO auth lives in one process. The alternative is one server per site: cleaner isolation and independent auth/scaling, but now you operate N servers. Or a single gateway fronting sub-MCPs: one endpoint and identity, but you inherit token-delegation sprawl and a choke point — and FastMCP composition only allows one auth provider per server, which is why something like PandaMCP delegates auth to the PanDA server.
-            There's no obviously-right answer — that's the point, and it's a discussion seed. (Aside: this whole MCP-for-science pattern is also what DOE's Genesis Mission, with Anthropic, is pushing — we're a bottom-up pilot of it.)
+            This is deployed, not a slide: one hosted rucio-mcp at rucio-mcp.af.uchicago.edu serves four experiments, path-routed: /site/atlas, escape, cms, dune. But HOW you carve up MCPs is a real design choice, so here are three topologies with their caveats.
+            We run one server, many sites: a single deploy, and an analyzer adds rucio-atlas and rucio-escape as separate entries, but all the per-VO auth lives in one process. The alternative is one server per site: cleaner isolation and independent auth/scaling, but now you operate N servers. Or a single gateway fronting sub-MCPs: one endpoint and identity, but you inherit token-delegation sprawl and a choke point, and FastMCP composition only allows one auth provider per server, which is why something like PandaMCP delegates auth to the PanDA server.
+            There's no obviously-right answer. That's the point, and it's a discussion seed. (Aside: this whole MCP-for-science pattern is also what DOE's Genesis Mission, with Anthropic, is pushing. We're a bottom-up pilot of it.)
           </aside>
         </section>
         <section id="slide-17-2">
@@ -723,7 +723,7 @@ rucio-mcp.af.uchicago.edu
           </div>
           <aside class="notes">
             This is what I actually want from the next 10 minutes. Six questions, none of which a vendor answers for us.
-            Granularity and identity: one MCP per service or a single gateway delegating identity? There's a real constraint — FastMCP composition allows one auth provider per server, which is why PandaMCP delegates auth to PanDA. Where should facility knowledge live — the shared marketplace or shipped with the facility via Puppet? Today it's in both and that duplication bloats context. Who maintains each playbook so it stays true? What may an agent DO without a human, and how do we sandbox it — we use k8s pods for isolation; a site without k8s might use bubblewrap. Who pays for inference at scale? And should there be one shared commons across all AFs, who curates it?
+            Granularity and identity: one MCP per service or a single gateway delegating identity? There's a real constraint, FastMCP composition allows one auth provider per server, which is why PandaMCP delegates auth to PanDA. Where should facility knowledge live, the shared marketplace or shipped with the facility via Puppet? Today it's in both and that duplication bloats context. Who maintains each playbook so it stays true? What may an agent DO without a human, and how do we sandbox it, we use k8s pods for isolation; a site without k8s might use bubblewrap. Who pays for inference at scale? And should there be one shared commons across all AFs, who curates it?
             My bet, to provoke you: the model and the harness are the easy part. Context, identity, and trust are our homework. Let's argue.
           </aside>
         </section>
@@ -757,10 +757,10 @@ rucio-mcp.af.uchicago.edu
         </div>
         <div class="footnote">Giordon Stark &middot; kratsg &middot; USATLAS F2F @ HTC26 &middot; 2026&#8209;06&#8209;09. In the spirit of Gordon Watts&rsquo; CHEP&nbsp;2026 ecosystem framing.</div>
         <aside class="notes">
-          To close: we turned a generic LLM into a facility-aware collaborator, and the thing that did it — context — is exactly the thing that ports to your facility next.
-          Genuinely a team effort: Ilija on the agent infrastructure and ES MCP, Fengping on Kubernetes, Keycloak, and Jupyter AI, Rob driving the vision, the marketplace, and the Genesis tie-in — plus the wider AF team.
-          Everything's installable today — add the marketplace in Claude Code, or npx skills add to cherry-pick skills; docs at af-docs/ai.
-          And now I'd really like the discussion — back to those six questions.
+          To close: we turned a generic LLM into a facility-aware collaborator, and the thing that did it, context, is exactly the thing that ports to your facility next.
+          Genuinely a team effort: Ilija on the agent infrastructure and ES MCP, Fengping on Kubernetes, Keycloak, and Jupyter AI, Rob driving the vision, the marketplace, and the Genesis tie-in, plus the wider AF team.
+          Everything's installable today: add the marketplace in Claude Code, or npx skills add to cherry-pick skills; docs at af-docs/ai.
+          And now I'd really like the discussion. Back to those six questions.
         </aside>
       </section>
 
