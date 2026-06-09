@@ -255,7 +255,7 @@ rucio list-file-replicas &lt;scope&gt;:&lt;name&gt; --protocol root</code></pre>
             <div class="card">
               <p class="card-icon"><i class="fa-brands fa-python"></i></p>
               <h3>hep-python-tools</h3>
-              <p>Typer CLIs with pixi/uv/Hatch, PEP&#8209;723 standalone scripts, packaging, testing, code quality.</p>
+              <p>Good-practice Python: building command-line tools, self-contained scripts, packaging, testing, and code quality.</p>
             </div>
           </div>
           <div style="display:grid; grid-template-columns: 1.2fr 1fr; gap:18px; margin-top:14px;">
@@ -271,7 +271,7 @@ rucio list-file-replicas &lt;scope&gt;:&lt;name&gt; --protocol root</code></pre>
         </div>
         <aside class="notes">
           Context shouldn't be re-invented per user. I made this, usatlas/marketplace is a plugin registry anyone adds in one line. Three plugins: analysis-facilities (per-site skills, including UChicago), atlas (the physics, 25+ skills), hep-python-tools (Python hygiene). It's the unit of sharing across facilities.
-          One honest caveat on the "pip-install" dream: the PLUGINS install in one line, but the actual TOOLS (ROOT, Athena, coffea, the whole zoo) don't pip-install cleanly. We rely on setupATLAS plus pixi. For those who don't know it: pixi is a fast, reproducible environment manager for conda and PyPI packages, and it also handles C/C++, Rust, Node, and CLI tools, so it covers basically the whole HEP stack. Crucially, without /cvmfs you can still get most of that stack via pixi and conda-forge. Big shoutout to the HEP Packaging Coordination effort, which is doing the ARM builds and supply-chain hardening, including pixi's dependency cooldowns that hold back freshly-published versions to blunt compromised-package attacks. Matthew Feickert's SciPy proceedings cover pixi well. That's what makes this tractable off-grid.
+          One honest caveat on the "pip-install" dream: the PLUGINS install in one line, but the actual TOOLS (ROOT, Athena, coffea, the whole zoo) don't pip-install cleanly. We rely on setupATLAS plus pixi. For those who don't know it: pixi is a fast, modern, and reproducible software environment management tool for conda (any language!) and Python packages. Crucially, without /cvmfs you can still get most of that stack via pixi and conda-forge. Big shoutout to the HEP Packaging Coordination effort, which is doing the ARM builds and supply-chain hardening, including pixi's dependency cooldowns that hold back freshly-published versions to blunt compromised-package attacks. Matthew Feickert's SciPy proceedings cover pixi well. That's what makes this tractable off-grid.
           And the recurring question: should facility-specific knowledge live here in the shared marketplace, or ship with the facility via Puppet? Today it's in both, duplication that bloats context and can drift. A discussion seed.
         </aside>
       </section>
@@ -740,8 +740,8 @@ rucio-mcp.af.uchicago.edu
                 <p style="margin:0; font-size:13.5pt;"><strong>Rob Gardner</strong> &mdash; vision, marketplace, Genesis</p>
                 <p style="margin:0; font-size:13.5pt;"><strong>Judith Stephen</strong> &mdash; HTCondor expertise, runbooks</p>
                 <p style="margin:0; font-size:13.5pt;"><strong>Aidan Rosberg</strong> &mdash; RP1 (Infra-as-Config), core dev/maintainer</p>
-                <p style="margin:0; font-size:13.5pt;"><strong>David Jordan</strong> &mdash; network engineering, node operations</p>
-                <p style="margin:0; font-size:13.5pt;"><strong>Farnaz Golnaraghi</strong> &mdash; storage, cluster provisioning</p>
+                <p style="margin:0; font-size:13.5pt;"><strong>David Jordan</strong> &mdash; hardware ops: networking &amp; Kubernetes</p>
+                <p style="margin:0; font-size:13.5pt;"><strong>Farnaz Golnaraghi</strong> &mdash; hardware ops: storage</p>
               </div>
               <p class="text-teal" style="font-size:13.5pt; margin-top:8px;"><i class="fa-solid fa-arrow-right"></i>&nbsp; <strong>What&rsquo;s next:</strong> port these lessons (incl. agentic AI) to the <a href="https://docs.google.com/presentation/d/1gfiWfIDVhJXvfAzkOckoOYsb0lkxwH9m/edit">Open Data Facility (ODF)</a> and RP1.</p>
             </div>
@@ -760,7 +760,7 @@ rucio-mcp.af.uchicago.edu
         <div class="footnote">Giordon Stark &middot; kratsg &middot; USATLAS F2F @ HTC26 &middot; 2026&#8209;06&#8209;09. In the spirit of Gordon Watts&rsquo; CHEP&nbsp;2026 ecosystem framing.</div>
         <aside class="notes">
           To close: we turned a generic LLM into a facility-aware collaborator, and the thing that did it, context, is exactly the thing that ports to your facility next.
-          Genuinely a team effort: Ilija on the agent infrastructure and ES MCP, Fengping on Kubernetes, Keycloak, and Jupyter AI, Rob driving the vision, the marketplace, and the Genesis tie-in, Judith on HTCondor expertise and the runbooks, Aidan on RP1 and infrastructure-as-config, David on network engineering and node operations, Farnaz on storage and cluster provisioning, plus the wider AF team.
+          Genuinely a team effort: Ilija on the agent infrastructure and ES MCP, Fengping on Kubernetes, Keycloak, and Jupyter AI, Rob driving the vision, the marketplace, and the Genesis tie-in, Judith on HTCondor expertise and the runbooks, Aidan on RP1 and infrastructure-as-config, David and Farnaz on hardware operations, David on networking and Kubernetes, Farnaz on storage, plus the wider AF team.
           Everything's installable today: add the marketplace in Claude Code, or npx skills add to cherry-pick skills; docs at af-docs/ai.
           And looking ahead: the plan is to translate everything we've learned building the AF, including this agentic AI work, into the Open Data Facility, the ODF, link on the slide.
           And now I'd really like the discussion. Back to those six questions.
