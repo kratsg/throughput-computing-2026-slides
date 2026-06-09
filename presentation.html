@@ -403,10 +403,11 @@ rucio-mcp.af.uchicago.edu
               </div>
             </div>
           </div>
-          <div class="footnote">A dedicated HTCondor MCP exists (<a href="https://indico.cern.ch/event/1471803/contributions/6967102/">Bockelman, CHEP&nbsp;2026</a>); the ops fleet (Shannon/OpenClaw) &rarr; next talk, &ldquo;Towards Agentic Ops.&rdquo;</div>
+          <div class="footnote">Two lanes on <strong>OpenClaw</strong>: <strong>Shannon</strong> = privileged, trust-earned runbooks (this bot, human-gated); <strong>Elwood</strong> = user-space, where facility rules apply (<a href="https://docs.google.com/presentation/d/1Mw2nQjBVHAC75F7zG-z1Q1dEWT903ufpGoO4OHSIt9Y/edit">framing</a>). A dedicated HTCondor MCP exists (<a href="https://indico.cern.ch/event/1471803/contributions/6967102/">Bockelman</a>); deeper &rarr; next talk.</div>
           <aside class="notes">
             Some agents work even when you're not there. Every morning a scheduled agent scans HTCondor and posts this report to Slack, state summary, hold-reason breakdown, top users, jobs held over 7 days, recommended actions. Today: 448 held of ~14,700, 3.1%, healthy.
-            Note it auto-categorizes holds, wall-time, output-transfer, OOM, using encoded knowledge, and it uses NO HTCondor MCP, just our own skills around the condor CLI. Bockelman has a real HTCondor MCP if you want that route.
+            Worth naming the framing: it all runs on OpenClaw, and there are two lanes. Shannon is the privileged lane, agents that run trusted runbooks, and that trust is earned, this human-gated condor bot is a Shannon runbook. Elwood is the user-space lane, the analyzer's assistant, where the facility's rules are applied. We introduced this framing at a facility R&D meeting, link in the footnote.
+            It auto-categorizes holds using encoded knowledge, and uses NO HTCondor MCP, just our own skills around the condor CLI. Bockelman has a real HTCondor MCP if you want that route.
           </aside>
         </section>
         <section id="slide-11b">
@@ -741,7 +742,9 @@ rucio-mcp.af.uchicago.edu
                 <li><strong>Ilija Vukotic</strong> &mdash; OpenClaw/Shannon agents, ES MCP</li>
                 <li><strong>Fengping Hu</strong> &mdash; Kubernetes, Keycloak, Jupyter AI</li>
                 <li><strong>Rob Gardner</strong> &mdash; vision, marketplace, Genesis</li>
+                <li><strong>Judith Stephen</strong> &mdash; HTCondor expertise, runbooks</li>
               </ul>
+              <p class="text-teal" style="font-size:13.5pt; margin-top:8px;"><i class="fa-solid fa-arrow-right"></i>&nbsp; <strong>What&rsquo;s next:</strong> port these lessons (incl. agentic AI) to the <a href="https://docs.google.com/presentation/d/1gfiWfIDVhJXvfAzkOckoOYsb0lkxwH9m/edit">Open Data Facility (ODF)</a>.</p>
             </div>
             <div class="callout teal">
               <p class="label">Try it / read more</p>
@@ -750,6 +753,7 @@ rucio-mcp.af.uchicago.edu
                 <li><code>npx skills add usatlas/marketplace</code> (pick skills)</li>
                 <li>Docs: <a href="https://usatlas.github.io/af-docs/ai">usatlas.github.io/af-docs/ai</a></li>
                 <li><a href="https://github.com/usatlas/marketplace">github.com/usatlas/marketplace</a> &middot; <code>rucio-mcp</code> &middot; <code>ami-mcp</code> &middot; <code>stare</code></li>
+                <li>Shannon/Elwood/OpenClaw <a href="https://docs.google.com/presentation/d/1Mw2nQjBVHAC75F7zG-z1Q1dEWT903ufpGoO4OHSIt9Y/edit">framing (R&amp;D meeting)</a></li>
               </ul>
               <p style="margin-top:10px; font-size:15pt;"><strong>Now, let&rsquo;s discuss.</strong></p>
             </div>
@@ -758,8 +762,9 @@ rucio-mcp.af.uchicago.edu
         <div class="footnote">Giordon Stark &middot; kratsg &middot; USATLAS F2F @ HTC26 &middot; 2026&#8209;06&#8209;09. In the spirit of Gordon Watts&rsquo; CHEP&nbsp;2026 ecosystem framing.</div>
         <aside class="notes">
           To close: we turned a generic LLM into a facility-aware collaborator, and the thing that did it, context, is exactly the thing that ports to your facility next.
-          Genuinely a team effort: Ilija on the agent infrastructure and ES MCP, Fengping on Kubernetes, Keycloak, and Jupyter AI, Rob driving the vision, the marketplace, and the Genesis tie-in, plus the wider AF team.
+          Genuinely a team effort: Ilija on the agent infrastructure and ES MCP, Fengping on Kubernetes, Keycloak, and Jupyter AI, Rob driving the vision, the marketplace, and the Genesis tie-in, Judith on HTCondor expertise and the runbooks, plus the wider AF team.
           Everything's installable today: add the marketplace in Claude Code, or npx skills add to cherry-pick skills; docs at af-docs/ai.
+          And looking ahead: the plan is to translate everything we've learned building the AF, including this agentic AI work, into the Open Data Facility, the ODF, link on the slide.
           And now I'd really like the discussion. Back to those six questions.
         </aside>
       </section>
