@@ -75,7 +75,7 @@
       <section>
         <section id="slide-3-1">
           <p class="kicker">Grounding &middot; the vocabulary</p>
-          <h2>Four words, one minute</h2>
+          <h2>The vocabulary, fast</h2>
           <div class="content">
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
               <div class="card">
@@ -86,12 +86,12 @@
               <div class="card teal">
                 <p class="card-icon"><i class="fa-solid fa-plug"></i></p>
                 <h3>MCP server</h3>
-                <p>Model Context Protocol: a standard adapter exposing a service (Rucio, AMI, your notebook) as <strong>tools <em>and resources</em></strong> any agent can call.</p>
+                <p>Model Context Protocol: a standard adapter exposing a service (Rucio, AMI, your notebook) as <strong>tools <em>and resources</em></strong> &mdash; <strong>live</strong> context any agent can call.</p>
               </div>
               <div class="card">
                 <p class="card-icon"><i class="fa-solid fa-book"></i></p>
                 <h3>Skill</h3>
-                <p>A reusable bundle of <strong>instructions + know-how</strong> the agent loads on demand (&ldquo;how we do a pyhf fit here&rdquo;).</p>
+                <p><strong>Static</strong> context the agent loads on demand: instructions, a reusable recipe (&ldquo;how we do a pyhf fit here&rdquo;).</p>
               </div>
               <div class="card teal">
                 <p class="card-icon"><i class="fa-solid fa-terminal"></i></p>
@@ -99,17 +99,13 @@
                 <p>The app that gives the agent <strong>hands</strong>: runs its commands, reads/writes files, wires MCPs, enforces permissions. e.g. <strong>Claude Code</strong>, Codex.</p>
               </div>
             </div>
-            <div style="display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 18px;">
-              <p class="node">Agent</p>
-              <p class="flow-arrow"><i class="fa-solid fa-arrow-right-arrow-left"></i></p>
-              <p class="node teal">MCP server</p>
-              <p class="flow-arrow"><i class="fa-solid fa-arrow-right"></i></p>
-              <p class="node slate">Rucio / AMI / Jupyter / &hellip;</p>
+            <div class="callout" style="margin-top: 16px;">
+              <p style="font-size:14.5pt;"><strong>Bundle</strong> skills + MCPs + agents + hooks &rarr; a <strong>plugin</strong>. Many plugins in one place to discover &amp; install &rarr; a <strong>marketplace</strong> (which can link other marketplaces).</p>
             </div>
           </div>
           <aside class="notes">
-            Fast, because this room is mixed. Agent = the engine doing the work: a loop that uses the model (the LLM, the brain) to decide each step. Harness = the hands: the app that actually runs those commands, touches files, wires up MCPs, enforces permissions, Claude Code, Codex. MCP = the USB-C port exposing a service as tools and resources. Skill = instructions on demand.
-            Don't dwell, these are just the nouns for the rest of the talk.
+            Fast, because this room is mixed. Agent = the engine doing the work: a loop that uses the model (the LLM, the brain) to decide each step. Harness = the hands: the app that runs those commands, touches files, wires up MCPs, enforces permissions, Claude Code, Codex. MCP = the USB-C port to a service, live context and tools. Skill = static context, a reusable recipe.
+            And the bundling, which matters for the next slides: a plugin bundles skills, MCPs, agents, and hooks; a marketplace is just a collection of plugins in one place to discover and install, and it can even point at other marketplaces. Don't dwell, these are the nouns for the rest of the talk.
           </aside>
         </section>
         <section id="slide-3-2">
@@ -265,7 +261,7 @@ rucio list-file-replicas &lt;scope&gt;:&lt;name&gt; --protocol root</code></pre>
           <div style="display:grid; grid-template-columns: 1.2fr 1fr; gap:18px; margin-top:14px;">
             <div class="callout teal">
               <p class="label"><i class="fa-solid fa-box-open"></i>&nbsp; Plugins install in one line; the tools don&rsquo;t</p>
-              <p style="font-size:13pt;">The agent know-how adds instantly; the <em>tools</em> come via <strong>setupATLAS + pixi</strong>. No <code>/cvmfs</code>? <strong>pixi + conda-forge</strong> covers most &mdash; incl. <strong>ARM builds</strong> &amp; <strong>supply-chain security</strong> (e.g. pixi <strong>dependency cooldowns</strong>) via <a href="https://github.com/hep-packaging-coordination/">HEP Packaging Coordination</a> (cf. <a href="https://matthewfeickert-talks.github.io/talk-chep-2026/">Feickert, CHEP&nbsp;2026</a>).</p>
+              <p style="font-size:13pt;">The agent know-how adds instantly; the <em>tools</em> come via <strong>setupATLAS</strong> + <a href="https://proceedings.scipy.org/articles/nwuf8465#pixi"><strong>pixi</strong></a>. No <code>/cvmfs</code>? <strong>pixi + conda-forge</strong> covers most &mdash; incl. <strong>ARM builds</strong> &amp; <strong>supply-chain security</strong> (e.g. pixi <strong>dependency cooldowns</strong>) via <a href="https://github.com/hep-packaging-coordination/">HEP Packaging Coordination</a> (cf. <a href="https://matthewfeickert-talks.github.io/talk-chep-2026/">Feickert, CHEP&nbsp;2026</a>).</p>
             </div>
             <div class="callout">
               <p class="label"><i class="fa-solid fa-circle-question"></i>&nbsp; Open question</p>
@@ -275,7 +271,7 @@ rucio list-file-replicas &lt;scope&gt;:&lt;name&gt; --protocol root</code></pre>
         </div>
         <aside class="notes">
           Context shouldn't be re-invented per user. I made this, usatlas/marketplace is a plugin registry anyone adds in one line. Three plugins: analysis-facilities (per-site skills, including UChicago), atlas (the physics, 25+ skills), hep-python-tools (Python hygiene). It's the unit of sharing across facilities.
-          One honest caveat on the "pip-install" dream: the PLUGINS install in one line, but the actual TOOLS (ROOT, Athena, coffea, the whole zoo) don't pip-install cleanly. We rely on setupATLAS plus pixi; and crucially, without /cvmfs you can still get most of the stack via pixi and conda-forge. Big shoutout to the HEP Packaging Coordination effort and Matthew Feickert's CHEP talk. That's what makes this tractable off-grid.
+          One honest caveat on the "pip-install" dream: the PLUGINS install in one line, but the actual TOOLS (ROOT, Athena, coffea, the whole zoo) don't pip-install cleanly. We rely on setupATLAS plus pixi. For those who don't know it: pixi is a fast, reproducible environment manager for conda and PyPI packages, and it also handles C/C++, Rust, Node, and CLI tools, so it covers basically the whole HEP stack. Crucially, without /cvmfs you can still get most of that stack via pixi and conda-forge. Big shoutout to the HEP Packaging Coordination effort, which is doing the ARM builds and supply-chain hardening, including pixi's dependency cooldowns that hold back freshly-published versions to blunt compromised-package attacks. Matthew Feickert's SciPy proceedings cover pixi well. That's what makes this tractable off-grid.
           And the recurring question: should facility-specific knowledge live here in the shared marketplace, or ship with the facility via Puppet? Today it's in both, duplication that bloats context and can drift. A discussion seed.
         </aside>
       </section>
